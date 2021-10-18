@@ -1,0 +1,48 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 9, 2020, 6:40:47 PM
+    Author     : KiThuat 88
+*/
+
+.container{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 40em;
+    margin: 0 auto;
+    padding-bottom: 50px;
+    border: solid black;
+    margin-top: 3em;
+  
+}
+.option{
+    text-align: center;
+    padding-top: 3em;
+}
+
+#content{
+    padding-top: 2em;
+}
+
+#button{
+    font-size: 120%;
+    width: 301px;
+    height: 2em;
+    background: greenyellow;
+}
+
+#form{
+    margin: 5% 0 5% 0;
+    text-align: left;
+    height: 25px;
+    width: 295px;
+}
+
+body{
+    /* background:url("../img/coolRonaldo.jpeg") no-repeat fixed center; */
+   background:  linear-gradient(45deg, black, transparent);
+}
