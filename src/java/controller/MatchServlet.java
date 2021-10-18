@@ -56,6 +56,9 @@ public class MatchServlet extends HttpServlet {
             request.setAttribute("cd", cd);
             request.getRequestDispatcher("matchstat.jsp").forward(request, response);
         }
+        if("add".equals(op)){
+            
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
