@@ -110,6 +110,12 @@
 
                 </div>			
                 <div class="form-group row">
+                    <label class="col-form-label col-4">UserId</label>
+                    <div class="col-8">
+                        <input type="number" class="form-control" name="userId" value="${sessionScope.acc.userId}" style="border-color: black ">
+                    </div>        	
+                </div>
+                    <div class="form-group row">
                     <label class="col-form-label col-4">Old Password</label>
                     <div class="col-8">
                         <input type="number" class="form-control" name="userId" value="${sessionScope.acc.password}" style="border-color: black">
