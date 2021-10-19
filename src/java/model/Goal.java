@@ -20,6 +20,15 @@ public class Goal {
     public Goal() {
     }
 
+    public Goal(int scorer, int assistant, int matchId, int time, boolean og) {
+        this.scorer = scorer;
+        this.assistant = assistant;
+        this.matchId = matchId;
+        this.time = time;
+        this.og = og;
+    }
+
+
     public Goal(int goalId, int scorer, int assistant, int matchId, int time, boolean og) {
         this.goalId = goalId;
         this.scorer = scorer;

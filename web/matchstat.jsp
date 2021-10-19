@@ -19,7 +19,7 @@
     <center>
         <table>
             <tr><th colspan="5">Event</th></tr>
-            <c:forEach items="${list}" var="e">
+                    <c:forEach items="${list}" var="e">
                 <tr>
                     <c:choose>
                         <c:when test="${(e.clubId==m.home&&(e.isGoal&&!e.og||!e.isGoal))||(e.clubId==m.away&&e.isGoal&&e.og)}">
@@ -34,12 +34,21 @@
                             <td width="10"></td>
                             <td>${e.time}</td>
                             <td width="10">${e.isGoal?"Goal":(e.og?"Red":"yellow")}</td>
-                            <td>${e.playerName}</td>
+                            <td>${e.playerName}${e.isGoal&&e.og?"(og)":""}</td>
                         </c:otherwise>
                     </c:choose>
+                    <c:if test="${acc.type==1}" >
+                        <td><a href="#">Edit</a></td>
+                        <td><a href="#">delete</a></td>
+                    </c:if>
                 </tr>
             </c:forEach>
+            <c:if test="${acc.type==1}" >
+                <tr><td><a href="match?op=addgoal&matchId=${m.matchId}">Add Goal</a></td></tr>
+                <tr><td><a href="#">Add Card</a></td></tr>
+            </c:if>
         </table>
+
         <br/>
         <table>
             <tr><th colspan="5">Statistic</th></tr>

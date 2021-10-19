@@ -156,6 +156,36 @@ public class MatchDao extends DBContext {
         return null;
     }
 
+    public void addGoal(Goal g) {
+        if (g.getAssistant() != 0) {
+            String sql = "insert into goal(scorer,assistant,matchId,time,og) values(?,?,?,?,?)";
+            try {
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setInt(1, g.getScorer());
+                ps.setInt(2, g.getAssistant());
+                ps.setInt(3, g.getMatchId());
+                ps.setInt(4, g.getTime());
+                ps.setBoolean(5, g.isOg());
+                ResultSet rs = ps.executeQuery();
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }else{
+            String sql = "insert into goal(scorer,matchId,time,og) values(?,?,?,?)";
+            try {
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setInt(1, g.getScorer());
+                ps.setInt(2, g.getMatchId());
+                ps.setInt(3, g.getTime());
+                ps.setBoolean(4, g.isOg());
+                ResultSet rs = ps.executeQuery();
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
         MatchDao md = new MatchDao();
         for (MatchEvent me : md.getMatchEvent(1)) {

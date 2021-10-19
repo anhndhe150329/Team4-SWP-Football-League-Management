@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Goal;
 import model.Match;
 import model.MatchEvent;
 import model.MatchStat;
@@ -45,22 +46,36 @@ public class MatchServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String op = request.getParameter("op");
         MatchDao md = new MatchDao();
-        if("view".equals(op)){
+        SquadDAO sd = new SquadDAO();
+        int matchId = Integer.parseInt(request.getParameter("matchId"));
+        Match m = md.getMatchById(matchId);
+        request.setAttribute("m", m);
+        if ("view".equals(op)) {
             ClubDAO cd = new ClubDAO();
-            int matchId = Integer.parseInt(request.getParameter("matchId"));
             MatchStat homeStat = md.getMatchStat(matchId, true);
             MatchStat awayStat = md.getMatchStat(matchId, false);
-            Match m = md.getMatchById(matchId);
             List<MatchEvent> list = md.getMatchEvent(matchId);
-            request.setAttribute("list",list);
+            request.setAttribute("list", list);
             request.setAttribute("home", homeStat);
             request.setAttribute("away", awayStat);
-            request.setAttribute("m", m);
+            
             request.setAttribute("cd", cd);
             request.getRequestDispatcher("matchstat.jsp").forward(request, response);
-        }
-        if("add".equals(op)){
+        } else if ("addgoal".equals(op)) {
+            List<SquadInfo> list = sd.getSquadInfo(sd.getSquad(matchId, true).getSquadId(), 0);
+            list.addAll(sd.getSquadInfo(sd.getSquad(matchId, false).getSquadId(), 0));
+            request.setAttribute("list", list);
+            request.setAttribute("pd", new PlayerDAO());
+            request.getRequestDispatcher("goal.jsp").forward(request, response);
+        } else if ("AddGoal".equals(op)) {
+            int scorer = Integer.parseInt(request.getParameter("scorer"));
+            int assistant = Integer.parseInt(request.getParameter("assistant"));
+            int time = Integer.parseInt(request.getParameter("time"));
+            String og = request.getParameter("og");
+            Goal g = new Goal(scorer,assistant, matchId, time, "on".equals(og));
             
+            md.addGoal(g);
+            request.getRequestDispatcher("match?op=view&matchId="+matchId).forward(request, response);
         }
     }
 
