@@ -17,9 +17,32 @@
         <c:set var="h" value="${cd.getClubById(m.home)}" />
         <c:set var="a" value="${cd.getClubById(m.away)}" />
     <center>
-
-
-        <table >
+        <table>
+            <tr><th colspan="5">Event</th></tr>
+            <c:forEach items="${list}" var="e">
+                <tr>
+                    <c:choose>
+                        <c:when test="${(e.clubId==m.home&&(e.isGoal&&!e.og||!e.isGoal))||(e.clubId==m.away&&e.isGoal&&e.og)}">
+                            <td>${e.playerName}${e.isGoal&&e.og?"(og)":""}</td>
+                            <td width="10">${e.isGoal?"Goal":(e.og?"Red":"yellow")}</td>
+                            <td>${e.time}</td>
+                            <td width="10"></td>
+                            <td></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td></td>
+                            <td width="10"></td>
+                            <td>${e.time}</td>
+                            <td width="10">${e.isGoal?"Goal":(e.og?"Red":"yellow")}</td>
+                            <td>${e.playerName}</td>
+                        </c:otherwise>
+                    </c:choose>
+                </tr>
+            </c:forEach>
+        </table>
+        <br/>
+        <table>
+            <tr><th colspan="5">Statistic</th></tr>
             <tr>
                 <td>${h.clubName}</td>
                 <td>${m.homeScore}</td>

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Match;
+import model.MatchEvent;
 import model.MatchStat;
 import model.Squad;
 import model.SquadInfo;
@@ -50,6 +51,8 @@ public class MatchServlet extends HttpServlet {
             MatchStat homeStat = md.getMatchStat(matchId, true);
             MatchStat awayStat = md.getMatchStat(matchId, false);
             Match m = md.getMatchById(matchId);
+            List<MatchEvent> list = md.getMatchEvent(matchId);
+            request.setAttribute("list",list);
             request.setAttribute("home", homeStat);
             request.setAttribute("away", awayStat);
             request.setAttribute("m", m);

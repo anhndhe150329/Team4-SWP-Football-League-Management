@@ -11,13 +11,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Goal;
 import model.Match;
+import model.MatchEvent;
 import model.MatchStat;
+
 /**
  *
  * @author Asus
  */
 public class MatchDao extends DBContext {
+
     public List<Match> getAllMatch() {
         List<Match> list = new ArrayList();
         String sql = "select*from [match]";
@@ -35,7 +39,8 @@ public class MatchDao extends DBContext {
         return null;
 
     }
-    public Match getMatch(int home, int away, Date date) { 
+
+    public Match getMatch(int home, int away, Date date) {
         String sql = "select*from [match] where home= ? and away= ? and date=?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -53,6 +58,7 @@ public class MatchDao extends DBContext {
         return null;
 
     }
+
     public Match getMatchById(int matchId) {
         String sql = "select*from [match] where matchId=?";
         try {
@@ -93,6 +99,7 @@ public class MatchDao extends DBContext {
             System.out.println(e);
         }
     }
+
     public MatchStat getMatchStat(int matchId, boolean b) {
         String sql = "select*from MatchStat where matchId=? and isHome=?";
         try {
@@ -101,7 +108,7 @@ public class MatchDao extends DBContext {
             ps.setBoolean(2, b);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                MatchStat m = new MatchStat(rs.getInt(1), rs.getBoolean(2), rs.getDouble(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(7),rs.getInt(8));
+                MatchStat m = new MatchStat(rs.getInt(1), rs.getBoolean(2), rs.getDouble(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getInt(8));
                 return m;
             }
         } catch (SQLException e) {
@@ -109,12 +116,51 @@ public class MatchDao extends DBContext {
         }
         return null;
     }
-    public static void main(String[] args) {
-        MatchDao md = new MatchDao();
-        System.out.println(md.getMatch(4, 3, Date.valueOf("2021-03-22")));
+
+    public List<Goal> getAllGoal() {
+        List<Goal> list = new ArrayList();
+        String sql = "select*from goal";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Goal g = new Goal(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getBoolean(6));
+                list.add(g);
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
     }
 
-    
+    public List<MatchEvent> getMatchEvent(int mid) {
+        List<MatchEvent> list = new ArrayList();
+        String sql = "select playerName,[time],isGoal,clubId,og from \n"
+                + "(select goalId, scorer,matchId,[time],og,1 as isGoal from goal union\n"
+                + "select cardId,playerId,matchId,[time],red,0 from [card]) as a\n"
+                + "join player on a.scorer=player.playerId\n"
+                + "where a.matchId=? order by [time]";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, mid);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                MatchEvent me = new MatchEvent(rs.getString(1), rs.getInt(2), rs.getBoolean(3), rs.getInt(4), rs.getBoolean(5));
+                list.add(me);
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 
-    
+    public static void main(String[] args) {
+        MatchDao md = new MatchDao();
+        for (MatchEvent me : md.getMatchEvent(1)) {
+            System.out.println(me.getPlayerName());
+        }
+    }
+
 }
