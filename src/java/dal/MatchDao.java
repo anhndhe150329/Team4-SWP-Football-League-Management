@@ -170,7 +170,7 @@ public class MatchDao extends DBContext {
             } catch (SQLException e) {
                 System.out.println(e);
             }
-        }else{
+        } else {
             String sql = "insert into goal(scorer,matchId,time,og) values(?,?,?,?)";
             try {
                 PreparedStatement ps = connection.prepareStatement(sql);
@@ -183,14 +183,30 @@ public class MatchDao extends DBContext {
                 System.out.println(e);
             }
         }
+    }
 
+    public void updateMatchResult(int matchId) {
+        String sql = "update [match] set homeScore = (select count(*) from goal join [match] on goal.matchId=[match].matchId \n"
+                + "join player on goal.scorer=player.playerId \n"
+                + "where (clubId=home and og=0)or(clubId=away and og= 1) ) where matchId=?\n"
+                + "update [match] set awayScore = (select count(*) from goal join [match] on goal.matchId=[match].matchId \n"
+                + "join player on goal.scorer=player.playerId \n"
+                + "where (clubId=away and og=0)or(clubId=home and og= 1) ) where matchId=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, matchId);
+            ps.setInt(2, matchId);
+            ps.executeQuery();
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     public static void main(String[] args) {
         MatchDao md = new MatchDao();
-        for (MatchEvent me : md.getMatchEvent(1)) {
-            System.out.println(me.getPlayerName());
-        }
+        md.updateMatchResult(1);
+        System.out.println(md.getMatchById(1).getHomeScore()+" - "+md.getMatchById(1).getAwayScore());
     }
 
 }

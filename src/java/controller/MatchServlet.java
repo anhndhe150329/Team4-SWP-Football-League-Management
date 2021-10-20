@@ -73,8 +73,8 @@ public class MatchServlet extends HttpServlet {
             int time = Integer.parseInt(request.getParameter("time"));
             String og = request.getParameter("og");
             Goal g = new Goal(scorer,assistant, matchId, time, "on".equals(og));
-            
             md.addGoal(g);
+            md.updateMatchResult(matchId);
             request.getRequestDispatcher("match?op=view&matchId="+matchId).forward(request, response);
         }
     }
