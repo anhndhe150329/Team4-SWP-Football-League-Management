@@ -32,6 +32,25 @@ public class BlogDAO extends DBContext {
         return null;
 
     }
+    public Blog blogByPostID(int pid) {
+        String sql = "select* from blog where id_post=?";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, pid);
+           ResultSet rs=ps.executeQuery();
+           if(rs.next()){
+               Blog b= new Blog(rs.getInt(1), rs.getString(2), rs.getInt(3), 
+                       rs.getString(4), rs.getString(5), rs.getDate(6));
+               return b;
+           }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+        
+
+    }
 
     public List<Blog> allrecentBlog() {
         String sql = "select top 3\n"
@@ -86,6 +105,6 @@ public class BlogDAO extends DBContext {
     public static void main(String[] args) {
 
        BlogDAO b= new BlogDAO();
-       b.deleteBlog(22);
+        System.out.println(b.blogByPostID(0));
     }
 }

@@ -28,7 +28,15 @@
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
-
+<style>
+    .bi-text p{
+         white-space: nowrap; 
+  width: 50px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  
+    }
+</style>
 <body>
      <jsp:include page="header.jsp"></jsp:include>
     <!-- Header End -->
@@ -78,7 +86,7 @@
                                 <img src="${c.image}" >
                             </div>
                             <div class="bi-text">
-                                <h4><a href="./blog-details.jsp">${c.title}</a></h4>
+                                <h4><a href="BlogController?action=detail?pid=${c.id_post}">${c.title}</a></h4>
                                 <ul>
                                    
                                     <li><i class="fa fa-calendar"></i> ${c.date}</li>

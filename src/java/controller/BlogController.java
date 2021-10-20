@@ -67,9 +67,16 @@ public class BlogController extends HttpServlet {
                 response.sendRedirect("BlogController?action=list");
                 break;
             case "delete":
-                int pid=Integer.parseInt(request.getParameter("pid"));
+                int pid = Integer.parseInt(request.getParameter("pid"));
                 bdao.deleteBlog(pid);
                 response.sendRedirect("BlogController?action=list");
+                break;
+            case "detail":
+                int post_id = Integer.parseInt(request.getParameter("pid"));
+                //get post by post id
+
+                request.setAttribute("listD", bdao.blogByPostID(post_id));
+                request.getRequestDispatcher("blog-details.jsp").forward(request, response);
                 break;
 
         }
@@ -87,7 +94,7 @@ public class BlogController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       BlogDAO bdao = new BlogDAO();
+        BlogDAO bdao = new BlogDAO();
         String action = request.getParameter("action");
         if (action == null || action.equals("")) {
             return;
@@ -110,6 +117,13 @@ public class BlogController extends HttpServlet {
                 request.getRequestDispatcher("BlogController?action=list").forward(request, response);
                 break;
             case "delete":
+                break;
+            case "detail":
+                int post_id = Integer.parseInt(request.getParameter("pid"));
+                //get post by post id
+
+                request.setAttribute("listD", bdao.blogByPostID(post_id));
+                request.getRequestDispatcher("blog-details.jsp").forward(request, response);
                 break;
 
         }
