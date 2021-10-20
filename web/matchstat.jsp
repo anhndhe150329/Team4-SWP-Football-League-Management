@@ -39,7 +39,7 @@
                     </c:choose>
                     <c:if test="${acc.type==1}" >
                         <td><a href="#">Edit</a></td>
-                        <td><a href="#">delete</a></td>
+                        <td><a href="match?op=delgoal&goalId=${e.goalId}&matchId=${m.matchId}">delete</a></td>
                     </c:if>
                 </tr>
             </c:forEach>

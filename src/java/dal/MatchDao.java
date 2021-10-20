@@ -136,7 +136,7 @@ public class MatchDao extends DBContext {
 
     public List<MatchEvent> getMatchEvent(int mid) {
         List<MatchEvent> list = new ArrayList();
-        String sql = "select playerName,[time],isGoal,clubId,og from \n"
+        String sql = "select goalId,playerName,[time],isGoal,clubId,og from \n"
                 + "(select goalId, scorer,matchId,[time],og,1 as isGoal from goal union\n"
                 + "select cardId,playerId,matchId,[time],red,0 from [card]) as a\n"
                 + "join player on a.scorer=player.playerId\n"
@@ -146,7 +146,7 @@ public class MatchDao extends DBContext {
             ps.setInt(1, mid);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                MatchEvent me = new MatchEvent(rs.getString(1), rs.getInt(2), rs.getBoolean(3), rs.getInt(4), rs.getBoolean(5));
+                MatchEvent me = new MatchEvent(rs.getInt(1),rs.getString(2), rs.getInt(3), rs.getBoolean(4), rs.getInt(5), rs.getBoolean(6));
                 list.add(me);
             }
             return list;
@@ -182,6 +182,16 @@ public class MatchDao extends DBContext {
             } catch (SQLException e) {
                 System.out.println(e);
             }
+        }
+    }
+    public void deleteGoal(int id) {
+        String sql = " delete goal where goalId=? ";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
     }
 
