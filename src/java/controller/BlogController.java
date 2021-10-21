@@ -72,7 +72,7 @@ public class BlogController extends HttpServlet {
                 bdao.deleteBlog(pid);
                 response.sendRedirect("blog?action=list");
                 break;
-<<<<<<< HEAD
+
             case "detail":
                 int post_id = Integer.parseInt(request.getParameter("pid"));
                 //get post by post id
@@ -81,8 +81,7 @@ public class BlogController extends HttpServlet {
                 request.getRequestDispatcher("blog-details.jsp").forward(request, response);
                 break;
 
-=======
->>>>>>> 5d084aae9c96dbde606907a1b5a80aece4ba4dae
+
         }
 
 //        request.getRequestDispatcher("index.jsp").forward(request, response);

@@ -57,14 +57,14 @@ public class FavouriteController extends HttpServlet {
                 int u = a.getUserId();
                 f.like(u, pid);
                 request.setAttribute("change", f.like(u, pid));
-              request.getRequestDispatcher("BlogController?action=list").forward(request, response);
+              request.getRequestDispatcher("blog?action=list").forward(request, response);
                 break;
             case "dislike":
                  FavouriteDAO f1 = new FavouriteDAO();
                 int pid1 = Integer.parseInt(request.getParameter("pid"));
                 f1.dislikeFavourite(pid1);
                 request.setAttribute("change1", f1.dislikeFavourite(pid1));
-                  response.sendRedirect("BlogController?action=list");
+                  response.sendRedirect("blog?action=list");
 
 
                 break;

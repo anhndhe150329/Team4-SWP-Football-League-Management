@@ -86,7 +86,7 @@
                                         <img src="${c.image}" >
                                     </div>
                                     <div class="bi-text">
-                                        <h4><a href="BlogController?action=detail?pid=${c.id_post}">${c.title}</a></h4>
+                                        <h4><a href="blog?action=detail?pid=${c.id_post}">${c.title}</a></h4>
                                         <ul>
 
                                             <li><i class="fa fa-calendar"></i> ${c.date}</li>
@@ -101,7 +101,7 @@
                                                 </a>
                                                
                                                 <c:if test="${acc.type==1}">
-                                                <li  style="color:blue"> <a href="BlogController?action=delete&pid=${c.id_post}">Delete</a></li>
+                                                <li  style="color:blue"> <a href="blog?action=delete&pid=${c.id_post}">Delete</a></li>
                                                 </c:if>
                                             <li><i class="fa fa-edit"></i> 3 Comment</li>
                                         </ul>

@@ -19,7 +19,7 @@
             
             <!--end of menu-->
             <!--begin of form-->
-            <form class="col-sm-12" action="BlogController?action=add" method="post">
+            <form class="col-sm-12" action="blog?action=add" method="post">
                 <h2>Create </h2>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Link image</label>
