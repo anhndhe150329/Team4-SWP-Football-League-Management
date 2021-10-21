@@ -90,14 +90,16 @@
                                         <ul>
 
                                             <li><i class="fa fa-calendar"></i> ${c.date}</li>
-                                            <c:if test="${change==1}" >
+                                           
                                             <a href="like?action=dislike&pid=${c.id_post}" style="text-decoration: none; margin-right: 10px">
                                                 <span style="font-size:20px">&#128077;</span>
                                             </a>
-                                            </c:if>
                                             
-                                                <a href="like?action=like1&pid=${c.id_post}"><i class="fa fa-thumbs-up" style="color:black"></i></a>
-                                                
+                                            
+                                                <a href="like?action=likef&pid=${c.id_post}">
+                                                    <i class="fa fa-thumbs-up" style="color:black"></i>
+                                                </a>
+                                               
                                                 <c:if test="${acc.type==1}">
                                                 <li  style="color:blue"> <a href="BlogController?action=delete&pid=${c.id_post}">Delete</a></li>
                                                 </c:if>

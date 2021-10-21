@@ -74,8 +74,8 @@ public class BlogController extends HttpServlet {
             case "detail":
                 int post_id = Integer.parseInt(request.getParameter("pid"));
                 //get post by post id
-
-                request.setAttribute("listD", bdao.blogByPostID(post_id));
+                Blog pBlog=bdao.blogByPostID(post_id);
+                request.setAttribute("list", pBlog);
                 request.getRequestDispatcher("blog-details.jsp").forward(request, response);
                 break;
 
@@ -122,7 +122,7 @@ public class BlogController extends HttpServlet {
                 int post_id = Integer.parseInt(request.getParameter("pid"));
                 //get post by post id
 
-                request.setAttribute("listD", bdao.blogByPostID(post_id));
+                request.setAttribute("list", bdao.blogByPostID(post_id));
                 request.getRequestDispatcher("blog-details.jsp").forward(request, response);
                 break;
 

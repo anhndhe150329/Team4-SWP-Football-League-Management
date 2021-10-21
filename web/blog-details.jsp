@@ -40,9 +40,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="bh-text">
-                        <h2>${listD.title}</h2>
+                        <h2>${list.title}</h2>
                         <ul>
-                            <li><i class="fa fa-calendar"></i> ${listD.date}</li>
+                            <li><i class="fa fa-calendar"></i> ${list.date}</li>
                             <li><i class="fa fa-edit"></i> 3 Comment</li>
                         </ul>
                     </div>
@@ -59,12 +59,12 @@
                 <div class="col-lg-8 left-blog-pad">
                     <div class="bd-text">
                         <div class="bd-title">
-                            <p>${listD.content}</p>
+                            <p>${list.content}</p>
                         </div>
                         <div class="bd-pic">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <img src="${listD.image}" alt="">
+                                    <img src="${list.image}" alt="">
                                 </div>
                                 <div class="col-md-8">
                                     <img src="img/blog/details/details-2.jpg" alt="">
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="bd-more-title">
-                            <p>${listD.content}</p>
+                            <p>${list.content}</p>
                             <p>Jill Scott should have doubled the lead soon after but headed Alex Greenwood's delivery
                                 over, before England saw the match out with relative ease to leave them needing just a
                                 point in their final game with Japan, next Wednesday, to top Group D.</p>
@@ -106,7 +106,7 @@
                                     <img src="img/blog/details/comment/comment-1.jpg" alt="">
                                 </div>
                                 <div class="sc-text">
-                                    <span>${listD.date}</span>
+                                    <span>${list.date}</span>
                                     <h5>Brandon Kelley</h5>
                                     <p>Vasse Felix chief executive, Paul Holmes a Court said no plans have yet been made
                                         for the buildings on the property.</p>
@@ -119,7 +119,7 @@
                                     <img src="img/blog/details/comment/comment-2.jpg" alt="">
                                 </div>
                                 <div class="sc-text">
-                                    <span>${listD.date}</span>
+                                    <span>${list.date}</span>
                                     <h5>Brandon Kelley</h5>
                                     <p>Vasse Felix chief executive, Paul Holmes a Court said no plans have yet been made
                                         for the buildings on the property.</p>
@@ -207,7 +207,7 @@
                                 <div class="ni-text">
                                     <h5><a href="#">How To Quit Smoking Using Zyban</a></h5>
                                     <ul>
-                                        <li><i class="fa fa-calendar"></i> ${listD.date}</li>
+                                        <li><i class="fa fa-calendar"></i> ${list.date}</li>
                                         <li><i class="fa fa-edit"></i> 3 Comment</li>
                                     </ul>
                                 </div>
@@ -219,7 +219,7 @@
                                 <div class="ni-text">
                                     <h5><a href="#">Decorate For Less With Art Posters</a></h5>
                                     <ul>
-                                        <li><i class="fa fa-calendar"></i> ${listD.date}</li>
+                                        <li><i class="fa fa-calendar"></i> ${list.date}</li>
                                         <li><i class="fa fa-edit"></i> 3 Comment</li>
                                     </ul>
                                 </div>
@@ -231,7 +231,7 @@
                                 <div class="ni-text">
                                     <h5><a href="#">Home Business Advertising Ideas</a></h5>
                                     <ul>
-                                        <li><i class="fa fa-calendar"></i> ${listD.date}</li>
+                                        <li><i class="fa fa-calendar"></i> ${list.date}</li>
                                         <li><i class="fa fa-edit"></i> 3 Comment</li>
                                     </ul>
                                 </div>
@@ -243,7 +243,7 @@
                                 <div class="ni-text">
                                     <h5><a href="#">Lasik Doesn T Stop Your Eyes From Aging</a></h5>
                                     <ul>
-                                        <li><i class="fa fa-calendar"></i> ${listD.date}</li>
+                                        <li><i class="fa fa-calendar"></i> ${list.date}</li>
                                         <li><i class="fa fa-edit"></i> 3 Comment</li>
                                     </ul>
                                 </div>
