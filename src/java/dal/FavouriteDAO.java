@@ -12,7 +12,7 @@ import model.Favourite;
  */
 public class FavouriteDAO extends DBContext {
 
-    public void like(int uid, int pid) {
+    public int like(int uid, int pid) {
         
         String sql = "insert into favourite(uid,pid) values(?,?)";
        
@@ -21,11 +21,34 @@ public class FavouriteDAO extends DBContext {
             st.setInt(1, uid);
             st.setInt(2, pid);
             st.executeUpdate();
+            return 1;
             
         } catch (SQLException e) {
             System.out.println(e);
         }      
+        return 0;
 
     }
+    public int dislikeFavourite(int pid) {
+        
+        String sql = "delete from favourite where pid=?";
+       
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            
+            st.setInt(1, pid);
+            st.executeUpdate();
+            return 1;
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }      
+        return 0;
+
+    }
+    public static void main(String[] args) {
+        System.out.println( new FavouriteDAO().like(1, 100));
+    }
+    
     
 }

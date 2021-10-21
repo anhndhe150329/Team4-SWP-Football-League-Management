@@ -27,14 +27,8 @@ public class FavouriteController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        FavouriteDAO f = new FavouriteDAO();
-        int pid = Integer.parseInt(request.getParameter("pid"));
-        HttpSession session=request.getSession();
-        User a=(User)session.getAttribute("acc");
-        int uid= a.getUserId();
-        f.like(uid, pid);
-        response.sendRedirect("BlogController");
+        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -49,7 +43,34 @@ public class FavouriteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       response.setContentType("text/html;charset=UTF-8");
+        String action = request.getParameter("action");
+        if (action == null ) {
+            return;
+        }
+        switch (action) {
+            case "likef":
+                FavouriteDAO f = new FavouriteDAO();
+                int pid = Integer.parseInt(request.getParameter("pid"));
+                HttpSession session = request.getSession();
+                User a = (User) session.getAttribute("acc");
+                int u = a.getUserId();
+                f.like(u, pid);
+                request.setAttribute("change", f.like(u, pid));
+              request.getRequestDispatcher("BlogController?action=list").forward(request, response);
+                break;
+            case "dislike":
+                 FavouriteDAO f1 = new FavouriteDAO();
+                int pid1 = Integer.parseInt(request.getParameter("pid"));
+                f1.dislikeFavourite(pid1);
+                request.setAttribute("change1", f1.dislikeFavourite(pid1));
+                  response.sendRedirect("BlogController?action=list");
+
+
+                break;
+            default:
+                return;
+        }
     }
 
     /**

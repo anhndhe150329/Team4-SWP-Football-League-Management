@@ -33,6 +33,20 @@ public class BlogDAO extends DBContext {
         return null;
 
     }
+<<<<<<< HEAD
+    public Blog blogByPostID(int pid) {
+        String sql = "select* from blog where id_post=?";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, pid);
+           ResultSet rs=ps.executeQuery();
+           if(rs.next()){
+               Blog b= new Blog(rs.getInt(1), rs.getString(2), rs.getInt(3), 
+                       rs.getString(4), rs.getString(5), rs.getDate(6));
+               return b;
+           }
+=======
      public List<Video> allVideo() {
         String sql = "select* from Video";
         List<Video> list = new ArrayList<>();
@@ -45,10 +59,15 @@ public class BlogDAO extends DBContext {
                 list.add(v);
             }
             return list;
+>>>>>>> 5d084aae9c96dbde606907a1b5a80aece4ba4dae
         } catch (SQLException e) {
             System.out.println(e);
         }
         return null;
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 5d084aae9c96dbde606907a1b5a80aece4ba4dae
 
     }
 
@@ -106,6 +125,10 @@ public class BlogDAO extends DBContext {
     public static void main(String[] args) {
 
        BlogDAO b= new BlogDAO();
+<<<<<<< HEAD
+        System.out.println(b.blogByPostID(14));
+=======
         System.out.println(b.allVideo());
+>>>>>>> 5d084aae9c96dbde606907a1b5a80aece4ba4dae
     }
 }

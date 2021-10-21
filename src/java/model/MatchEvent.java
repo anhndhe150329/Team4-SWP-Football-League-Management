@@ -10,6 +10,7 @@ package model;
  * @author Asus
  */
 public class MatchEvent {
+    int goalId;
     String playerName;
     int time;
     boolean isGoal;
@@ -18,8 +19,9 @@ public class MatchEvent {
 
     public MatchEvent() {
     }
-
-    public MatchEvent(String playerName, int time, boolean isGoal, int clubId, boolean og) {
+    
+    public MatchEvent(int goalId,String playerName, int time, boolean isGoal, int clubId, boolean og) {
+        this.goalId=goalId;
         this.playerName = playerName;
         this.time = time;
         this.isGoal = isGoal;
@@ -65,6 +67,14 @@ public class MatchEvent {
 
     public void setOg(boolean og) {
         this.og = og;
+    }
+
+    public int getGoalId() {
+        return goalId;
+    }
+
+    public void setGoalId(int goalId) {
+        this.goalId = goalId;
     }
     
 }
