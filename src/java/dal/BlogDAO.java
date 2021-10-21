@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Blog;
+import model.Video;
 
 /**
  *
@@ -24,6 +25,24 @@ public class BlogDAO extends DBContext {
                 Blog b = new Blog(rs.getInt(1), rs.getString(2), rs.getInt(3),
                         rs.getString(4), rs.getString(5), rs.getDate(6));
                 list.add(b);
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+
+    }
+     public List<Video> allVideo() {
+        String sql = "select* from Video";
+        List<Video> list = new ArrayList<>();
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Video v = new Video(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5));
+                list.add(v);
             }
             return list;
         } catch (SQLException e) {
@@ -83,9 +102,10 @@ public class BlogDAO extends DBContext {
         }
     }
 
+    
     public static void main(String[] args) {
 
        BlogDAO b= new BlogDAO();
-       b.deleteBlog(22);
+        System.out.println(b.allVideo());
     }
 }

@@ -177,7 +177,7 @@
                 <c:if test ="${acc.type!=1}">
                     <li><a href="#">Pages</a>
                     <ul class="dropdown">
-                        <li><a href="BlogController?action=list">Blog</a></li>
+                        <li><a href="blog?action=list">Blog</a></li>
                         <li><a href="./blog-details.jsp">Blog Details</a></li>                       
                     </ul>
                 </li>
@@ -185,7 +185,7 @@
                 <c:if test ="${acc.type==1}">
                      <li><a href="#">Pages</a>
                      <ul class="dropdown">
-                        <li><a href="BlogController?action=list">Blog</a></li>
+                        <li><a href="blog?action=list">Blog</a></li>
                         <li><a href="createBlog.jsp">Create Blog</a></li>                       
                     </ul>
                 </c:if>

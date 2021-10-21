@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Blog;
+import model.Video;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "BlogController", urlPatterns = {"/BlogController"})
+@WebServlet(name = "BlogController", urlPatterns = {"/blog"})
 public class BlogController extends HttpServlet {
 
     /**
@@ -64,15 +65,17 @@ public class BlogController extends HttpServlet {
                 String image = request.getParameter("image");
                 String content = request.getParameter("content");
                 bdao.insertBlog(title, content, image);
-                response.sendRedirect("BlogController?action=list");
+                response.sendRedirect("blog?action=list");
                 break;
             case "delete":
                 int pid=Integer.parseInt(request.getParameter("pid"));
                 bdao.deleteBlog(pid);
-                response.sendRedirect("BlogController?action=list");
+                response.sendRedirect("blog?action=list");
                 break;
-
         }
+
+//        request.getRequestDispatcher("index.jsp").forward(request, response);
+        
 
     }
 
@@ -107,7 +110,7 @@ public class BlogController extends HttpServlet {
                 String image = request.getParameter("image");
                 String content = request.getParameter("content");
                 bdao.insertBlog(title, content, image);
-                request.getRequestDispatcher("BlogController?action=list").forward(request, response);
+                request.getRequestDispatcher("blog?action=list").forward(request, response);
                 break;
             case "delete":
                 break;
