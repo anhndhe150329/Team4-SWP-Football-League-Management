@@ -489,56 +489,19 @@
                 </div>
                 <div class="row">
                     <div class="video-slider owl-carousel">
+                    <c:forEach items="${vlist}" var="v">
                         <div class="col-lg-3">
-                            <div class="video-item set-bg" data-setbg="img/videos/video-1.jpg">
+                            <div class="video-item set-bg" data-setbg="img/videos/${v.image}">
                                 <div class="vi-title">
-                                    <h5>A World Of Infinite Opportunities</h5>
+                                    <h5>${v.content}</h5>
                                 </div>
-                                <a href="https://www.youtube.com/watch?v=dhYOPzcsbGM" class="play-btn video-popup"><img
+                                <a href="${v.link}" class="play-btn video-popup"><img
                                         src="img/videos/play.png" alt=""></a>
-                                <div class="vi-time">11:13</div>
+                                <div class="vi-time">${v.time}</div>
                             </div>
                         </div>
-                        <div class="col-lg-3">
-                            <div class="video-item set-bg" data-setbg="img/videos/video-2.jpg">
-                                <div class="vi-title">
-                                    <h5>Video Games Playing With Imagination</h5>
-                                </div>
-                                <a href="https://www.youtube.com/watch?v=dhYOPzcsbGM" class="play-btn video-popup"><img
-                                        src="img/videos/play.png" alt=""></a>
-                                <div class="vi-time">11:13</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="video-item set-bg" data-setbg="img/videos/video-3.jpg">
-                                <div class="vi-title">
-                                    <h5>Home Audio Recording For Everyone</h5>
-                                </div>
-                                <a href="https://www.youtube.com/watch?v=dhYOPzcsbGM" class="play-btn video-popup"><img
-                                        src="img/videos/play.png" alt=""></a>
-                                <div class="vi-time">11:13</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="video-item set-bg" data-setbg="img/videos/video-4.jpg">
-                                <div class="vi-title">
-                                    <h5>What If They Let You Run The Hubble</h5>
-                                </div>
-                                <a href="https://www.youtube.com/watch?v=dhYOPzcsbGM" class="play-btn video-popup"><img
-                                        src="img/videos/play.png" alt=""></a>
-                                <div class="vi-time">11:13</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="video-item set-bg" data-setbg="img/videos/video-4.jpg">
-                                <div class="vi-title">
-                                    <h5>What If They Let You Run The Hubble</h5>
-                                </div>
-                                <a href="https://www.youtube.com/watch?v=dhYOPzcsbGM" class="play-btn video-popup"><img
-                                        src="img/videos/play.png" alt=""></a>
-                                <div class="vi-time">11:13</div>
-                            </div>
-                        </div>
+                    </c:forEach>
+                        
                     </div>
                 </div>
             </div>
