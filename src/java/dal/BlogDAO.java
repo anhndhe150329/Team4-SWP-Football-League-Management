@@ -105,6 +105,6 @@ public class BlogDAO extends DBContext {
     public static void main(String[] args) {
 
        BlogDAO b= new BlogDAO();
-        System.out.println(b.blogByPostID(0));
+        System.out.println(b.blogByPostID(14));
     }
 }
