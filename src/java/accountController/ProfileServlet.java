@@ -1,22 +1,24 @@
-package AccountController;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package accountController;
 
-import dal.ClubDAO;
-import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Club;
-import model.UserType;
+import javax.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
- * @author asus
+ * @author Asus
  */
-public class UserTypeServlet extends HttpServlet {
+public class ProfileServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,14 +32,13 @@ public class UserTypeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        UserDAO udao = new UserDAO();
-        List<UserType> list = udao.loadAll();
-
-        ClubDAO cdao = new ClubDAO();
-        List<Club> list1 = cdao.getALL();
-        request.setAttribute("allClub", list1);
-        request.setAttribute("all", list);
-        request.getRequestDispatcher("createAccount.jsp").forward(request, response);
+        String op = request.getParameter("op");
+        HttpSession session = request.getSession();
+        User a= (User)session.getAttribute("acc");
+        if("edit".equals(op)){
+            
+        }
+        request.getRequestDispatcher("profile.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

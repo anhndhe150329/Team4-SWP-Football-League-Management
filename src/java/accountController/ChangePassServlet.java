@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AccountController;
+package accountController;
 
 import dal.UserDAO;
 import java.io.IOException;

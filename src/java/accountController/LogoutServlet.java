@@ -1,22 +1,19 @@
-package AccountController;
+package accountController;
 
-import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.mail.MessagingException;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Email;
-import model.EmailUtil;
-import model.User;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author asus
  */
-public class ForgotPassword extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +32,10 @@ public class ForgotPassword extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ForgotPassword</title>");
+            out.println("<title>Servlet LogoutServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ForgotPassword at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LogoutServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +53,25 @@ public class ForgotPassword extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
+         HttpSession session=request.getSession();
+//        session.removeAttribute("acc");
+        session.removeAttribute("acc");
+        request.getSession().invalidate();        
+        Cookie loginCookie = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("user")) {
+                    loginCookie = cookie;
+                    break;
+                }
+            }
+        }
+        if (loginCookie != null) {
+            loginCookie.setMaxAge(0);
+            response.addCookie(loginCookie);
+        }       
+        response.sendRedirect("home");
     }
 
     /**
@@ -70,38 +85,7 @@ public class ForgotPassword extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            String emailAddress = request.getParameter("email");
-            String username = request.getParameter("name");
-            UserDAO udao = new UserDAO();
-            User user = udao.findByUsername(username, emailAddress);
-            if (user == null) {
-                request.setAttribute("err", "Name or Email  incorrect!!");
-            } else {
-                Email email = new Email();
-                email.setFrom("nguyenvanduc14012000@gmail.com");// mail
-                email.setFromPassword("fpt@123456789");//password mail
-                email.setTo(emailAddress);
-                email.setSubject("Forgot password!!");
-                StringBuilder sb = new StringBuilder();
-                sb.append("Dear ").append(username).append("<br>");
-                sb.append("Your are used the forgot password fuction<br>");
-                sb.append("Your password is:<b>").append(user.getPassword()).append("</b>").append("<br>");
-                sb.append("Regards<br>");
-                sb.append("Administrator auto tool");
-                
-                email.setContent(sb.toString());
-                EmailUtil etil= new EmailUtil();
-                etil.send(email);
-                request.setAttribute("message", "Email sent to the email Address."
-                        +"Please check your new password ");
-
-            }
-
-        } catch (MessagingException e) {
-            request.setAttribute("error", e.getMessage());
-        }
-        request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
