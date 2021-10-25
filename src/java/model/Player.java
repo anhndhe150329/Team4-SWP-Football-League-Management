@@ -46,6 +46,8 @@ public class Player {
         this.clubId = clubId;
     }
 
+    
+
     public int getPlayerId() {
         return playerId;
     }

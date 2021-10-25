@@ -20,6 +20,8 @@ import model.Position;
  */
 public class PlayerDAO extends DBContext {
 
+    
+    
     //list player
     public List<Player> getAllPlayer() {
         List<Player> list = new ArrayList();
