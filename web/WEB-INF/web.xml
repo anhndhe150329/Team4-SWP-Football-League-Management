@@ -2,35 +2,35 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>accountController.LoginServlet</servlet-class>
+        <servlet-class>controller.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>accountController.LogoutServlet</servlet-class>
+        <servlet-class>controller.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProfileServlet</servlet-name>
-        <servlet-class>accountController.ProfileServlet</servlet-class>
+        <servlet-class>controller.ProfileServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddAccountServlet</servlet-name>
-        <servlet-class>accountController.RegisterAccountServlet</servlet-class>
+        <servlet-class>controller.RegisterAccountServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UserTypeServlet</servlet-name>
-        <servlet-class>accountController.UserTypeServlet</servlet-class>
+        <servlet-class>controller.UserTypeServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RegisterAccountServlet</servlet-name>
-        <servlet-class>accountController.RegisterAccountServlet</servlet-class>
+        <servlet-class>controller.RegisterAccountServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ForgotPassword</servlet-name>
-        <servlet-class>accountController.ForgotPassword</servlet-class>
+        <servlet-class>controller.ForgotPassword</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ChangePassServlet</servlet-name>
-        <servlet-class>accountController.ChangePassServlet</servlet-class>
+        <servlet-class>controller.ChangePassServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>HomeServlet</servlet-name>

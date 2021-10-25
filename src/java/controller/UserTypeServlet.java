@@ -1,4 +1,4 @@
-package accountController;
+package controller;
 
 import dal.ClubDAO;
 import dal.UserDAO;

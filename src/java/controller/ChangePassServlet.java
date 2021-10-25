@@ -1,11 +1,15 @@
-package accountController;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller;
 
 import dal.UserDAO;
-
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.enterprise.context.SessionScoped;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,9 +18,9 @@ import model.User;
 
 /**
  *
- * @author asus
+ * @author admin
  */
-public class LoginServlet extends HttpServlet {
+public class ChangePassServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +39,10 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");
+            out.println("<title>Servlet ChangePassServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ChangePassServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +60,11 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+//        HttpSession session = request.getSession();
+//            User user = (User) session.getAttribute("acc");
+//              PrintWriter out = response.getWriter();
+//              out.print(user);
+        request.getRequestDispatcher("changePass.jsp").forward(request, response);
     }
 
     /**
@@ -70,53 +78,28 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UserDAO udao = new UserDAO();
-        String u = request.getParameter("username");
-        if (u==null) {
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+         int id1 = Integer.parseInt(request.getParameter("userId"));
+        
+
+        String password = request.getParameter("pass");
+        String newpass = request.getParameter("pass1");
+
+//      PrintWriter out = response.getWriter();
+//            out.print(userId+" " + password+" "+ newpass);
+        UserDAO a = new UserDAO();
+
+        // if(a != null){
+        if (newpass.equals(password)) {
+            request.setAttribute("mess1", "Changepass Done!");
+            a.changePass(password,id1 );
+            request.getRequestDispatcher("login").forward(request, response);
+
         } else {
-            String p = request.getParameter("password");
-
-            String r = request.getParameter("rem");
-            User us = udao.login(u, p);
-//        us.setType(2);
-            //null -->return login page
-            if (us == null) {
-                request.setAttribute("err", "Wrong user or pass");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            } else {
-                //tao sessiion ,cookie
-                HttpSession session = request.getSession();
-
-                session.setAttribute("acc", us);
-
-                //save username,password cookie
-                Cookie cuser = new Cookie("user1", u);
-                Cookie cpass = new Cookie("pass", p);
-                Cookie cremember = new Cookie("rem", r);
-                if (r != null) {
-                    //user click remember me-->set time cookies
-                    //co nho , 1 ngay
-                    cuser.setMaxAge(60 * 60 * 24);
-                    cpass.setMaxAge(60 * 60 * 24);
-                    cremember.setMaxAge(60 * 60 * 24);
-                } else {
-                    //khong nho , nen xoa no di
-                    cuser.setMaxAge(0);
-                    cpass.setMaxAge(0);
-                    cremember.setMaxAge(0);
-
-                }
-                response.addCookie(cuser);
-                response.addCookie(cpass);
-                response.addCookie(cremember);
-                response.sendRedirect("home");
-            }
-
+            request.setAttribute("mess", "CHECK YOUR COMFIRM PASSWORD!!!");
         }
+        request.getRequestDispatcher("changePass.jsp").forward(request, response);
 
-//        PrintWriter out = response.getWriter();
-//        out.print(us);
+        // }
     }
 
     /**
