@@ -7,6 +7,7 @@ package controller;
 
 import dal.BlogDAO;
 import dal.ClubDAO;
+import dal.RankDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Club;
+import model.TopScorer;
 import model.Video;
 
 /**
@@ -35,7 +37,11 @@ public class HomeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        BlogDAO bdao = new BlogDAO();
+       List<TopScorer> listTopScorer = new RankDAO().getTopScocer();
+        
+                request.setAttribute("listTopScorer", listTopScorer);
+                
+        BlogDAO bdao = new BlogDAO();   
         List<Video> vlist = bdao.allVideo();
         request.setAttribute("vlist", vlist);
         request.getRequestDispatcher("index.jsp").forward(request, response);

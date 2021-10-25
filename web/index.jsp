@@ -366,7 +366,7 @@
                         <div class="section-title">
                             <h3>Club <span>Ranking</span></h3>
                         </div>
-                        <form action="topscorer">
+                        <form action="home">
                         <div class="points-table">
                             <table>
                                 <thead>
