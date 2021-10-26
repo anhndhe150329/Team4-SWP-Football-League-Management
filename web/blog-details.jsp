@@ -67,7 +67,7 @@
                                     <img src="${list.image}" alt="">
                                 </div>
                                 <div class="col-md-8">
-                                    <img src="img/blog/details/details-2.jpg" alt="">
+                                    <img src="${list.image}" alt="">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <img src="img/blog/details/details-3.jpg" alt="">
@@ -81,18 +81,9 @@
                         </div>
                         <div class="bd-more-title">
                             <p>${list.content}</p>
-                            <p>Jill Scott should have doubled the lead soon after but headed Alex Greenwood's delivery
-                                over, before England saw the match out with relative ease to leave them needing just a
-                                point in their final game with Japan, next Wednesday, to top Group D.</p>
-                            <p>Straight from kick off, England looked to dominate against a defensive Argentina side,
-                                but while their build-up was much improved from their shaky win over Scotland last
-                                Sunday, their final ball was still lacking.</p>
-                            <p>Jill Scott should have doubled the lead soon after but headed Alex Greenwood's delivery
-                                over, before England saw the match out with relative ease to leave them needing just a
-                                point in their final game with Japan, next Wednesday, to top Group D.</p>
-                            <p>Straight from kick off, England looked to dominate against a defensive Argentina side,
-                                but while their build-up was much improved from their shaky win over Scotland last
-                                Sunday, their final ball was still lacking.</p>
+                            <p>${list.content}.</p>
+                            <p>${list.content}.</p>
+                            <p>${list.content}.</p>
                         </div>
                         <div class="bd-tags">
                             <a href="#">Multipopuse</a>
@@ -169,9 +160,7 @@
                             <ul>
                                 <li><a href="#">Fool Ball</a></li>
                                 <li><a href="#">Soccer</a></li>
-                                <li><a href="#">basketball</a></li>
-                                <li><a href="#">Volleyball</a></li>
-                                <li><a href="#">E-Sport</a></li>
+                               
                             </ul>
                         </div>
                         <div class="follow-links">

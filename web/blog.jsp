@@ -86,7 +86,7 @@
                                         <img src="${c.image}" >
                                     </div>
                                     <div class="bi-text">
-                                        <h4><a href="blog?action=detail?pid=${c.id_post}">${c.title}</a></h4>
+                                        <h4><a href="blog?action=detail&pid=${c.id_post}">${c.title}</a></h4>
                                         <ul>
 
                                             <li><i class="fa fa-calendar"></i> ${c.date}</li>
@@ -125,9 +125,7 @@
                                 <ul>
                                     <li><a href="#">Fool Ball</a></li>
                                     <li><a href="#">Soccer</a></li>
-                                    <li><a href="#">basketball</a></li>
-                                    <li><a href="#">Volleyball</a></li>
-                                    <li><a href="#">E-Sport</a></li>
+                                    
                                 </ul>
                             </div>
                             <div class="follow-links">

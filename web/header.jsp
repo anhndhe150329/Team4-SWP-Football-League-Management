@@ -178,7 +178,7 @@
                     <li><a href="#">Pages</a>
                     <ul class="dropdown">
                         <li><a href="blog?action=list">Blog</a></li>
-                        <li><a href="./blog-details.jsp">Blog Details</a></li>                       
+                                               
                     </ul>
                 </li>
                 </c:if>
