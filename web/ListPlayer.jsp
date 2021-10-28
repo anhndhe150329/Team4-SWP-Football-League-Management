@@ -24,7 +24,7 @@
         }
     </style>
     <body>
-        
+        <%@include file="header.jsp"  %> 
         <form action="player" method="get">
             <select name="club">
                 <option value="0" ${club==0?"selected":""} >ALL</option>

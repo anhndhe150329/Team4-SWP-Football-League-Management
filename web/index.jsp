@@ -364,7 +364,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="section-title">
-                            <h3>Club <span>Ranking</span></h3>
+                            <h3>Statistic<span>Leage</span></h3>
                         </div>
                         <form action="home">
                         <div class="points-table">
