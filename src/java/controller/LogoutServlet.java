@@ -70,7 +70,8 @@ public class LogoutServlet extends HttpServlet {
         if (loginCookie != null) {
             loginCookie.setMaxAge(0);
             response.addCookie(loginCookie);
-        }       
+        }
+        
         response.sendRedirect("home");
     }
 

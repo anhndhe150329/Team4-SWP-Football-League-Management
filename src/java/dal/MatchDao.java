@@ -24,7 +24,7 @@ public class MatchDao extends DBContext {
     
     public List<Match> getAllMatch() {
         List<Match> list = new ArrayList();
-        String sql = "select*from [match]";
+        String sql = "select * from [Match] order by [date] ";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
