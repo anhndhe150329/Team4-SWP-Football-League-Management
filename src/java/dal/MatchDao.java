@@ -100,6 +100,21 @@ public class MatchDao extends DBContext {
         }
     }
 
+    public void updateMatch(Match m) {
+        String sql = "update [match] set home=?, away= ? ,date = ?, status = ? where matchId=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, m.getHome());
+            ps.setInt(2, m.getAway());
+            ps.setDate(3, m.getDate());
+            ps.setBoolean(4, m.isStatus());
+            ps.setInt(5, m.getMatchId());
+            ResultSet rs = ps.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
     public MatchStat getMatchStat(int matchId, boolean b) {
         String sql = "select*from MatchStat where matchId=? and isHome=?";
         try {
@@ -146,7 +161,7 @@ public class MatchDao extends DBContext {
             ps.setInt(1, mid);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                MatchEvent me = new MatchEvent(rs.getInt(1),rs.getString(2), rs.getInt(3), rs.getBoolean(4), rs.getInt(5), rs.getBoolean(6));
+                MatchEvent me = new MatchEvent(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getBoolean(4), rs.getInt(5), rs.getBoolean(6));
                 list.add(me);
             }
             return list;
@@ -184,6 +199,7 @@ public class MatchDao extends DBContext {
             }
         }
     }
+
     public void deleteGoal(int id) {
         String sql = " delete goal where goalId=? ";
         try {
@@ -207,7 +223,7 @@ public class MatchDao extends DBContext {
             ps.setInt(1, matchId);
             ps.setInt(2, matchId);
             ps.executeQuery();
-            
+
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -216,7 +232,7 @@ public class MatchDao extends DBContext {
     public static void main(String[] args) {
         MatchDao md = new MatchDao();
         md.updateMatchResult(1);
-        System.out.println(md.getMatchById(1).getHomeScore()+" - "+md.getMatchById(1).getAwayScore());
+        System.out.println(md.getMatchById(1).getHomeScore() + " - " + md.getMatchById(1).getAwayScore());
     }
 
 }

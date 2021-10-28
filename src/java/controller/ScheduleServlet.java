@@ -41,9 +41,9 @@ public class ScheduleServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String op = request.getParameter("op");
         ClubDAO cd = new ClubDAO();
-        MatchDao ld = new MatchDao();
+        MatchDao md = new MatchDao();
         SquadDAO sd = new SquadDAO();
-
+        
         if (op == null) {
             op = "";
         }
@@ -59,14 +59,13 @@ public class ScheduleServlet extends HttpServlet {
                 int away = Integer.parseInt(request.getParameter("away"));
                 Date date = Date.valueOf(request.getParameter("date"));
                 Match m = new Match(home, away, date, false);
-                ld.addMatch(m);
-                MatchDao md = new MatchDao();
+                md.addMatch(m);
                 int matchId = md.getMatch(home, away, date).getMatchId();
                 Squad s1 = new Squad(true, true, matchId);
                 Squad s2 = new Squad(true, false, matchId);
                 sd.addSquad(s1);
                 sd.addSquad(s2);
-                List<Match> list = ld.getAllMatch();
+                List<Match> list = md.getAllMatch();
                 request.setAttribute("list", list);
                 request.setAttribute("cd", cd);
                 request.getRequestDispatcher("schedule.jsp").forward(request, response);
@@ -82,18 +81,36 @@ public class ScheduleServlet extends HttpServlet {
                 if(s2!=null){
                     sd.deleteSquad(s2.getSquadId());
                 }
-                ld.deleteMatch(id);
-                List<Match> list = ld.getAllMatch();
+                md.deleteMatch(id);
+                List<Match> list = md.getAllMatch();
                 request.setAttribute("list", list);
                 request.setAttribute("cd", cd);
                 request.getRequestDispatcher("schedule.jsp").forward(request, response);
                 break;
             }
             case "view": {
-                List<Match> list = ld.getAllMatch();
+                List<Match> list = md.getAllMatch();
                 request.setAttribute("list", list);
                 request.setAttribute("cd", cd);
                 request.getRequestDispatcher("schedule.jsp").forward(request, response);
+                break;
+            }
+            case "edit":{
+                int id = Integer.parseInt(request.getParameter("id"));
+                Match m = md.getMatchById(id);
+                request.setAttribute("match", m);
+                request.setAttribute("cd", cd);
+                request.getRequestDispatcher("EditMatch.jsp").forward(request, response);
+                break;
+            }
+            case "Update":{
+                int id = Integer.parseInt(request.getParameter("id"));
+                Match m = md.getMatchById(id);
+                m.setDate(Date.valueOf(request.getParameter("date")));
+                String status = request.getParameter("status");
+                m.setStatus("on".equals(status));
+                md.updateMatch(m);
+                request.getRequestDispatcher("schedule?op=view").forward(request, response);
                 break;
             }
             default:

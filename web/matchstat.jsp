@@ -51,7 +51,12 @@
 
         <br/>
         <table>
-            <tr><th colspan="5">Statistic</th></tr>
+            <tr>
+                <th colspan="5">Statistic</th>
+                <c:if test="${acc.type==1}" >
+                    <td><a href="match?op=edit&matchId=${m.matchId}">Edit</a></td>
+                </c:if>
+            </tr>
             <tr>
                 <td>${h.clubName}</td>
                 <td>${m.homeScore}</td>

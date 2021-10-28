@@ -37,11 +37,11 @@ public class HomeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       List<TopScorer> listTopScorer = new RankDAO().getTopScocer();
-        
-                request.setAttribute("listTopScorer", listTopScorer);
-                
-        BlogDAO bdao = new BlogDAO();   
+        List<TopScorer> listTopScorer = new RankDAO().getTopScocer();
+
+        request.setAttribute("listTopScorer", listTopScorer);
+
+        BlogDAO bdao = new BlogDAO();
         List<Video> vlist = bdao.allVideo();
         request.setAttribute("vlist", vlist);
         request.getRequestDispatcher("index.jsp").forward(request, response);
