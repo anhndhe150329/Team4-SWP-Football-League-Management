@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         UserDAO udao = new UserDAO();
         String u = request.getParameter("username");
-        if (u==null) {
+        if (u == null) {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             String p = request.getParameter("password");
@@ -110,6 +110,7 @@ public class LoginServlet extends HttpServlet {
                 response.addCookie(cuser);
                 response.addCookie(cpass);
                 response.addCookie(cremember);
+                session.setAttribute("active", "home");
                 response.sendRedirect("home");
             }
 

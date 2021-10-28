@@ -132,6 +132,8 @@ public class SquadDAO extends DBContext {
             System.out.println(e);
         }
     }
+    
+    
 
     public Squad getSquad(int mId, boolean isHome) {
         String sql = "select*from Squad where matchId = ? and isHome = ?";

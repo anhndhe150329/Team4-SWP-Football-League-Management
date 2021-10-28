@@ -90,7 +90,7 @@
                                                     <td><a href="squad?op=edit&mId=${m.matchId}&isHome=${acc.favClub==m.home?"true":"false"}">Update Squad</a></td>
                                                 </c:if>
                                                 <c:if test="${acc.type==1}">
-                                                    <td><a href="#" >Update</a></td>
+                                                    <td><a href="schedule?op=edit&id=${m.matchId}" >Update</a></td>
                                                     <c:if test="${!m.status}">
                                                         <td><a href="schedule?op=delete&id=${m.matchId}">Delete</a></td>
                                                     </c:if>

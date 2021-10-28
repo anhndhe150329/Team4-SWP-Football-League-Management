@@ -67,7 +67,7 @@
             </c:forEach>
 
             </table>
-            <a href="index.jsp" class="btn btn-gradient grd4 withradius secbtn">HOME</a>
+            <a href="home" class="btn btn-gradient grd4 withradius secbtn">HOME</a>
 
         
     </body>

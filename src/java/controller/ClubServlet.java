@@ -40,6 +40,8 @@ public class ClubServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        session.setAttribute("active", "club");
         String op = request.getParameter("op");
         ClubDAO cd = new ClubDAO();
        
@@ -88,7 +90,6 @@ public class ClubServlet extends HttpServlet {
                 String stadium = request.getParameter("stadium");
                 Club c = new Club(name, image, kit, stadium);
                 cd.addClub(c);
-                HttpSession session = request.getSession();
                 User u = (User) session.getAttribute("acc");
                 UserDAO ud = new UserDAO();
                 ud.changeFavClub(u.getUserId(), cd.maxIndex());

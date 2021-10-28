@@ -108,7 +108,7 @@
                                                 <c:if test="${acc.favClub==0}">
                                                     <a href="club?op=add">Your Club</a>
                                                 </c:if>
-                                               <c:if test="${acc.favClub!=0}">
+                                                <c:if test="${acc.favClub!=0}">
                                                     <a href="club?op=detail&id=${acc.favClub}">Your Club</a>
                                                 </c:if> 
                                             </li>
@@ -141,9 +141,10 @@
                         <div class="col-lg-10">
                             <div class="nav-menu">
                                 <ul class="main-menu">
-                                    <li class="active"><a href="home">Home</a></li>
-                                    <li><a href="club?op=list">Club</a></li>
-                                    <li><a href="schedule?op=view">Schedule</a></li>
+
+                                    <li class="${active=="home"?"active":""}"><a href="home">Home</a></li>
+                                    <li class="${active=="club"?"active":""}"><a href="club?op=list">Club</a></li>
+                                    <li class="${active=="schedule"?"active":""}"><a href="schedule?op=view">Schedule</a></li>
                                     <li><a href="player?op=list">Players</a></li>
                                     <li><a href="rank.jsp">Rank</a></li>
                                     <li><a href="#">Profile</a>
@@ -171,31 +172,31 @@
                                             <li><a href="./result.jsp"> Recent Results</a></li>
                                         </ul>
                                     </li>
-                                    
-                
-               
-                <c:if test ="${acc.type!=1}">
-                    <li><a href="#">Pages</a>
-                    <ul class="dropdown">
-                        <li><a href="blog?action=list">Blog</a></li>
-                                               
-                    </ul>
-                </li>
-                </c:if>
-                <c:if test ="${acc.type==1}">
-                     <li><a href="#">Pages</a>
-                     <ul class="dropdown">
-                        <li><a href="blog?action=list">Blog</a></li>
-                        <li><a href="createBlog.jsp">Create Blog</a></li>                       
-                    </ul>
-                </c:if>
-                
-                      <c:if test ="${acc.type!=1}">
-                     <li><a href="./contact.jsp">Contact Us</a></li>
-                </c:if>
-                                         
 
-                                   
+
+
+                                    <c:if test ="${acc.type!=1}">
+                                        <li class="${active=="blog"?"active":""}"><a href="#">Pages</a>
+                                            <ul class="dropdown">
+                                                <li><a href="blog?action=list">Blog</a></li>
+
+                                            </ul>
+                                        </li>
+                                    </c:if>
+                                    <c:if test ="${acc.type==1}">
+                                        <li class="${active=="blog"?"active":""}"><a href="#">Pages</a>
+                                            <ul class="dropdown">
+                                                <li><a href="blog?action=list">Blog</a></li>
+                                                <li><a href="createBlog.jsp">Create Blog</a></li>                       
+                                            </ul>
+                                        </c:if>
+
+                                        <c:if test ="${acc.type!=1}">
+                                        <li><a href="./contact.jsp">Contact Us</a></li>
+                                        </c:if>
+
+
+
                                 </ul>
                                 <div class="nm-right search-switch">
                                     <i class="fa fa-search"></i>

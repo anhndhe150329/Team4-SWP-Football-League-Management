@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Club;
 import model.TopScorer;
 import model.Video;
@@ -37,11 +38,13 @@ public class HomeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       List<TopScorer> listTopScorer = new RankDAO().getTopScocer();
-        
-                request.setAttribute("listTopScorer", listTopScorer);
-                
-        BlogDAO bdao = new BlogDAO();   
+        HttpSession session = request.getSession();
+        session.setAttribute("active", "home");
+        List<TopScorer> listTopScorer = new RankDAO().getTopScocer();
+
+        request.setAttribute("listTopScorer", listTopScorer);
+
+        BlogDAO bdao = new BlogDAO();
         List<Video> vlist = bdao.allVideo();
         request.setAttribute("vlist", vlist);
         request.getRequestDispatcher("index.jsp").forward(request, response);

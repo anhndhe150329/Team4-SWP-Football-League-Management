@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Blog;
 import model.Video;
 
@@ -45,6 +46,8 @@ public class BlogController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.setAttribute("active", "blog");
         BlogDAO bdao = new BlogDAO();
         String action = request.getParameter("action");
         if (action == null || action.equals("")) {
