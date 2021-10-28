@@ -61,6 +61,8 @@ public class ScheduleServlet extends HttpServlet {
                 Match m = new Match(home, away, date, false);
                 md.addMatch(m);
                 int matchId = md.getMatch(home, away, date).getMatchId();
+                md.addMatchStat(matchId, true);
+                md.addMatchStat(matchId, false);
                 Squad s1 = new Squad(true, true, matchId);
                 Squad s2 = new Squad(true, false, matchId);
                 sd.addSquad(s1);
@@ -81,6 +83,7 @@ public class ScheduleServlet extends HttpServlet {
                 if(s2!=null){
                     sd.deleteSquad(s2.getSquadId());
                 }
+                md.deleteMatchStat(id);
                 md.deleteMatch(id);
                 List<Match> list = md.getAllMatch();
                 request.setAttribute("list", list);

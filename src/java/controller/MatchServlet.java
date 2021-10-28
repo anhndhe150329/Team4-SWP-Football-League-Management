@@ -49,11 +49,12 @@ public class MatchServlet extends HttpServlet {
         SquadDAO sd = new SquadDAO();
         int matchId = Integer.parseInt(request.getParameter("matchId"));
         Match m = md.getMatchById(matchId);
+        ClubDAO cd = new ClubDAO();
         request.setAttribute("m", m);
         if (null != op) {
             switch (op) {
                 case "view": {
-                    ClubDAO cd = new ClubDAO();
+                    
                     MatchStat homeStat = md.getMatchStat(matchId, true);
                     MatchStat awayStat = md.getMatchStat(matchId, false);
                     List<MatchEvent> list = md.getMatchEvent(matchId);
@@ -93,9 +94,30 @@ public class MatchServlet extends HttpServlet {
                 case "edit":{
                     MatchStat ms1=md.getMatchStat(matchId, true);
                     MatchStat ms2=md.getMatchStat(matchId, false);
+                    request.setAttribute("cd", cd);
                     request.setAttribute("home", ms1);
                     request.setAttribute("away", ms2);
                     request.getRequestDispatcher("EditMatchStat.jsp").forward(request, response);
+                    break;
+                }
+                case "Update":{
+                    double hposs = Double.parseDouble(request.getParameter("hposs"));
+                    double aposs = Double.parseDouble(request.getParameter("aposs"));
+                    int hshot = Integer.parseInt(request.getParameter("hshot"));
+                    int ashot = Integer.parseInt(request.getParameter("ashot"));
+                    int hsot = Integer.parseInt(request.getParameter("hsot"));
+                    int asot = Integer.parseInt(request.getParameter("asot"));
+                    int hcorner = Integer.parseInt(request.getParameter("hcorners"));
+                    int acorner = Integer.parseInt(request.getParameter("acorners"));
+                    int hoffside = Integer.parseInt(request.getParameter("hoffside"));
+                    int aoffside = Integer.parseInt(request.getParameter("aoffside"));
+                    int hfoul = Integer.parseInt(request.getParameter("hfoul"));
+                    int afoul = Integer.parseInt(request.getParameter("afoul"));
+                    MatchStat ms1 = new MatchStat(matchId, true, hposs, hshot, hsot, hcorner, hoffside, hfoul);
+                    MatchStat ms2 = new MatchStat(matchId, false, aposs, ashot, asot, acorner, aoffside, afoul);
+                    md.updateMatchStat(ms1);
+                    md.updateMatchStat(ms2);
+                    request.getRequestDispatcher("match?op=view&matchId=" + matchId).forward(request, response);
                     break;
                 }
                 default:
