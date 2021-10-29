@@ -43,7 +43,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="hs-text">
-                                                <h4>30 september 2019 / 9:00 GMT+0000</h4>
+                                                <h4>30 september 2021 / 9:00 GMT+0000</h4>
                                                 <h2>Airrosten VS Lerenort in London</h2>
                                                 <a href="#" class="primary-btn">More Details</a>
                                             </div>
@@ -87,7 +87,7 @@
                                                 <td class="mt-content">
                                                     <div class="mc-op">Ucraina vs England</div>
                                                     <h4>VS</h4>
-                                                    <div class="mc-op">15 September 2019</div>
+                                                    <div class="mc-op">15 September 2021</div>
                                                 </td>
                                                 <td class="right-team">
                                                     <img src="img/match/tf-2.jpg" alt="">
@@ -108,7 +108,7 @@
                                                 <td class="mt-content">
                                                     <div class="mc-op">Ucraina vs England</div>
                                                     <h4>VS</h4>
-                                                    <div class="mc-op">15 September 2019</div>
+                                                    <div class="mc-op">15 September 2021</div>
                                                 </td>
                                                 <td class="right-team">
                                                     <img src="img/match/tf-4.jpg" alt="">
@@ -129,7 +129,7 @@
                                                 <td class="mt-content">
                                                     <div class="mc-op">Ucraina vs England</div>
                                                     <h4>VS</h4>
-                                                    <div class="mc-op">15 September 2019</div>
+                                                    <div class="mc-op">15 September 2021</div>
                                                 </td>
                                                 <td class="right-team">
                                                     <img src="img/match/tf-6.jpg" alt="">
@@ -155,7 +155,7 @@
                                                 <td class="mt-content">
                                                     <div class="mc-op">Ucraina vs England</div>
                                                     <h4>1 : 2</h4>
-                                                    <div class="mc-op">15 September 2019</div>
+                                                    <div class="mc-op">15 September 2021</div>
                                                 </td>
                                                 <td class="right-team">
                                                     <img src="img/match/tf-2.jpg" alt="">
@@ -176,7 +176,7 @@
                                                 <td class="mt-content">
                                                     <div class="mc-op">Ucraina vs England</div>
                                                     <h4>1 : 2</h4>
-                                                    <div class="mc-op">15 September 2019</div>
+                                                    <div class="mc-op">15 September 2021</div>
                                                 </td>
                                                 <td class="right-team">
                                                     <img src="img/match/tf-4.jpg" alt="">
@@ -197,7 +197,7 @@
                                                 <td class="mt-content">
                                                     <div class="mc-op">Ucraina vs England</div>
                                                     <h4>1 : 2</h4>
-                                                    <div class="mc-op">15 September 2019</div>
+                                                    <div class="mc-op">15 September 2021</div>
                                                 </td>
                                                 <td class="right-team">
                                                     <img src="img/match/tf-6.jpg" alt="">
@@ -231,7 +231,7 @@
                                 <div class="si-text">
                                     <h5><a href="#">Counting Your Chicken Before They Hatch</a></h5>
                                     <ul>
-                                        <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                        <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                         <li><i class="fa fa-edit"></i> 3 Comment</li>
                                     </ul>
                                 </div>
@@ -243,7 +243,7 @@
                                 <div class="si-text">
                                     <h5><a href="#">Hypnotherapy For Motivation Getting The Drive Back</a></h5>
                                     <ul>
-                                        <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                        <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                         <li><i class="fa fa-edit"></i> 3 Comment</li>
                                     </ul>
                                 </div>
@@ -255,7 +255,7 @@
                                 <div class="si-text">
                                     <h5><a href="#">Astronomy Binoculars A Great Alternative</a></h5>
                                     <ul>
-                                        <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                        <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                         <li><i class="fa fa-edit"></i> 3 Comment</li>
                                     </ul>
                                 </div>
@@ -267,7 +267,7 @@
                                 <div class="si-text">
                                     <h5><a href="#">Decorate For Less With Art Posters</a></h5>
                                     <ul>
-                                        <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                        <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                         <li><i class="fa fa-edit"></i> 3 Comment</li>
                                     </ul>
                                 </div>
@@ -301,7 +301,7 @@
                                         <div class="ni-text">
                                             <h4><a href="#">Once You Learn These Hard Truths About Life, You'll Become</a></h4>
                                             <ul>
-                                                <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                                <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                                 <li><i class="fa fa-edit"></i> 3 Comment</li>
                                             </ul>
                                             <p>It’s that time again when people start thinking about their New Years
@@ -318,7 +318,7 @@
                                         <div class="ni-text">
                                             <h5><a href="#">How To Quit Smoking Using Zyban</a></h5>
                                             <ul>
-                                                <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                                <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                                 <li><i class="fa fa-edit"></i> 3 Comment</li>
                                             </ul>
                                         </div>
@@ -330,7 +330,7 @@
                                         <div class="ni-text">
                                             <h5><a href="#">Decorate For Less With Art Posters</a></h5>
                                             <ul>
-                                                <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                                <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                                 <li><i class="fa fa-edit"></i> 3 Comment</li>
                                             </ul>
                                         </div>
@@ -342,7 +342,7 @@
                                         <div class="ni-text">
                                             <h5><a href="#">Home Business Advertising Ideas</a></h5>
                                             <ul>
-                                                <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                                <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                                 <li><i class="fa fa-edit"></i> 3 Comment</li>
                                             </ul>
                                         </div>
@@ -354,7 +354,7 @@
                                         <div class="ni-text">
                                             <h5><a href="#">Lasik Doesn T Stop Your Eyes From Aging</a></h5>
                                             <ul>
-                                                <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                                <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                                 <li><i class="fa fa-edit"></i> 3 Comment</li>
                                             </ul>
                                         </div>
@@ -422,11 +422,9 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="section-title">
-<<<<<<< HEAD
-                            <h3>Statistic<span>Leage</span></h3>
-=======
+
                             <h3>Top <span>Assistants</span></h3>
->>>>>>> 943cf267b5ad4412cb83bafe79a29293b23bb310
+
                         </div>
                         <form action="home">
                             <div class="points-table">
@@ -505,7 +503,7 @@
                                         <h5><a href="#">England reach World Cup last 16 with hard-fought win over
                                                 Argentina</a></h5>
                                         <ul>
-                                            <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                            <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                             <li><i class="fa fa-edit"></i> 3 Comment</li>
                                         </ul>
                                     </div>
@@ -517,7 +515,7 @@
                                     <div class="ni-text">
                                         <h5><a href="#">There’s a great history of the winner Sandia</a></h5>
                                         <ul>
-                                            <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                            <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                             <li><i class="fa fa-edit"></i> 3 Comment</li>
                                         </ul>
                                     </div>
@@ -529,7 +527,7 @@
                                     <div class="ni-text">
                                         <h5><a href="#">It’ll be a tough game and a physical game</a></h5>
                                         <ul>
-                                            <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                            <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                             <li><i class="fa fa-edit"></i> 3 Comment</li>
                                         </ul>
                                     </div>
@@ -541,7 +539,7 @@
                                     <div class="ni-text">
                                         <h5><a href="#">If we don’t score we can’t get frustrated</a></h5>
                                         <ul>
-                                            <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                            <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                             <li><i class="fa fa-edit"></i> 3 Comment</li>
                                         </ul>
                                     </div>
@@ -554,7 +552,7 @@
                                         <h5><a href="#">We are playing history and Argentina at the World Cup, says Phil
                                                 Neville</a></h5>
                                         <ul>
-                                            <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                            <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                             <li><i class="fa fa-edit"></i> 3 Comment</li>
                                         </ul>
                                     </div>
@@ -566,7 +564,7 @@
                                     <div class="ni-text">
                                         <h5><a href="#">Le Havre does have a growing fan club</a></h5>
                                         <ul>
-                                            <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                            <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                             <li><i class="fa fa-edit"></i> 3 Comment</li>
                                         </ul>
                                     </div>
@@ -578,7 +576,7 @@
                                     <div class="ni-text">
                                         <h5><a href="#">It will be hard to break them down</a></h5>
                                         <ul>
-                                            <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                            <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                             <li><i class="fa fa-edit"></i> 3 Comment</li>
                                         </ul>
                                     </div>
@@ -590,7 +588,7 @@
                                     <div class="ni-text">
                                         <h5><a href="#">We’ve never seen them as organised </a></h5>
                                         <ul>
-                                            <li><i class="fa fa-calendar"></i> May 19, 2019</li>
+                                            <li><i class="fa fa-calendar"></i> May 19, 2021</li>
                                             <li><i class="fa fa-edit"></i> 3 Comment</li>
                                         </ul>
                                     </div>

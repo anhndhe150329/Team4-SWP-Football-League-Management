@@ -79,17 +79,24 @@ public class BlogController extends HttpServlet {
             case "detail":
                 int post_id = Integer.parseInt(request.getParameter("pid"));
                 //get post by post id
-                Blog pBlog=bdao.blogByPostID(post_id);
+                Blog pBlog = bdao.blogByPostID(post_id);
                 request.setAttribute("list", pBlog);
                 request.getRequestDispatcher("blog-details.jsp").forward(request, response);
                 break;
+            case "update":
+                String t = request.getParameter("title");
+                String c = request.getParameter("content");
+                String i = request.getParameter("img");
+                int id = Integer.parseInt(request.getParameter("id"));
 
+                bdao.updateBlog(t, c, i, id);
+                response.sendRedirect("blog?action=list");
+
+                break;
 
         }
 
 //        request.getRequestDispatcher("index.jsp").forward(request, response);
-        
-
     }
 
     /**
@@ -133,6 +140,16 @@ public class BlogController extends HttpServlet {
 
                 request.setAttribute("list", bdao.blogByPostID(post_id));
                 request.getRequestDispatcher("blog-details.jsp").forward(request, response);
+                break;
+                case "update":
+                String t = request.getParameter("title");
+                String c = request.getParameter("content");
+                String i = request.getParameter("img");
+                int id = Integer.parseInt(request.getParameter("id"));
+
+                bdao.updateBlog(t, c, i, id);
+                response.sendRedirect("blog?action=list");
+
                 break;
 
         }
