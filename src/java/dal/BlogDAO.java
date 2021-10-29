@@ -93,7 +93,22 @@ public class BlogDAO extends DBContext {
         return null;
 
     }
+    public void updateBlog(String title,String content,String img,int idp){
+        String sql="update blog  set title=?,content=?,image=? where id_post=?";
+         try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            
+            ps.setString(1, title);
+            ps.setString(2, content);
+            ps.setString(3, img);
+            ps.setInt(4, idp);
+           
+            ps.executeUpdate();
 
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
     public void insertBlog(String title, String content, String img) {
         String sql = "insert into blog values(?,1,?,?,getdate())";
 
@@ -127,10 +142,7 @@ public class BlogDAO extends DBContext {
     public static void main(String[] args) {
 
        BlogDAO b= new BlogDAO();
-
-        System.out.println(b.blogByPostID(14));
-
-        System.out.println(b.allVideo());
+       b.updateBlog("duc", "123", "", 14);
 
     }
 }

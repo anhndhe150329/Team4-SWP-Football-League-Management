@@ -187,7 +187,8 @@
                                         <li class="${active=="blog"?"active":""}"><a href="#">Pages</a>
                                             <ul class="dropdown">
                                                 <li><a href="blog?action=list">Blog</a></li>
-                                                <li><a href="createBlog.jsp">Create Blog</a></li>                       
+                                                <li><a href="createBlog.jsp">Create Blog</a></li>
+
                                             </ul>
                                         </c:if>
 

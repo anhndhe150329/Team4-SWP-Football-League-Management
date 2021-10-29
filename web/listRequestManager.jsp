@@ -16,10 +16,14 @@
         <link href="css/style2.css" rel="stylesheet">
         <link href="css/colors.css" rel="stylesheet">
     </head>
-    
+    <style>
+        .container-fluid, .container-lg, .container-md, .container-sm, .container-xl{
+            padding-top: 20px;
+        }
+    </style>
     <body>
 
-
+        <%@include  file="header.jsp"  %>
 
         <div class="container-fluid text-center"    >
             <table class="table table-bordered table-hover">
@@ -57,8 +61,7 @@
                 </c:forEach>
 
             </table>
-            <a href="index.jsp" class="btn btn-gradient grd4 withradius secbtn">HOME</a>
-
+            <%--<%@include  file="footer.jsp"  %>--%>
     </body>
 </html>
 

@@ -91,13 +91,13 @@
 
                                             <li><i class="fa fa-calendar"></i> ${c.date}</li>
                                            
-                                            <a href="like?action=dislike&pid=${c.id_post}" style="text-decoration: none; margin-right: 10px">
+                                            <a href="like?action=likef&pid=${c.id_post}" style="text-decoration: none; margin-right: 10px">
                                                 <span style="font-size:20px">&#128077;</span>
                                             </a>
                                             
                                             
-                                                <a href="like?action=likef&pid=${c.id_post}">
-                                                    <i class="fa fa-thumbs-up" style="color:black"></i>
+                                                <a href="like?action=dislike&pid=${c.id_post}">
+                                                   <i class="fa fa-thumbs-down"></i>
                                                 </a>
                                                
                                                 <c:if test="${acc.type==1}">
