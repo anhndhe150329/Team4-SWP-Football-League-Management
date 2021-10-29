@@ -43,9 +43,11 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="hs-text">
-                                                <h4>30 september 2021 / 9:00 GMT+0000</h4>
-                                                <h2>Airrosten VS Lerenort in London</h2>
-                                                <a href="#" class="primary-btn">More Details</a>
+                                            <c:set var="home" value="${cd.getClubById(NextMatch.home)}" />
+                                            <c:set var="away" value="${cd.getClubById(NextMatch.away)}" />
+                                                <h4>${NextMatch.date} / 9:00 GMT+0000</h4>
+                                               <h2>${home.clubName}  VS ${away.clubName} in ${home.stadium} </h2>
+                                                <a href="match?op=view&matchId=${NextMatch.matchId}" class="primary-btn">More Details</a>
                                             </div>
                                         </div>
                                     </div>

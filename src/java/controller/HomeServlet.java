@@ -7,6 +7,7 @@ package controller;
 
 import dal.BlogDAO;
 import dal.ClubDAO;
+import dal.MatchDao;
 import dal.RankDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Club;
 import model.TopScorer;
+import model.User;
 import model.Video;
 
 /**
@@ -41,9 +43,17 @@ public class HomeServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("active", "home");
         List<TopScorer> listTopScorer = new RankDAO().getTopScocer();
-
         request.setAttribute("listTopScorer", listTopScorer);
-
+        int id=0;
+        if(session.getAttribute("acc")!=null){
+            id= ((User) session.getAttribute("acc")).getFavClub();
+        }
+        MatchDao md = new MatchDao();
+        request.setAttribute("NextMatch", md.getNextMatch(id));
+        
+        ClubDAO cd = new ClubDAO();
+        request.setAttribute("cd", cd);
+        
         BlogDAO bdao = new BlogDAO();
         List<Video> vlist = bdao.allVideo();
         request.setAttribute("vlist", vlist);
