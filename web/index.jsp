@@ -433,20 +433,24 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Goal</th>
-                                            <th>Player</th>
-                                            <th>Pos</th>
-                                            <th>Country</th>
+                                            <th>No</th>
+                                            <th>Player Name</th>
+                                            <th>Assistant</th>
+                                            <th>Score</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${listTopScorer}" var ="T">
+                                        <c:forEach begin="0" end="4" step="1" var ="i">
+                                            <c:if test="${i<listAs.size()}">
+                                            <c:set var="Ag" value="${listAs.get(i)}"/>
+                                           
                                             <tr>
-                                                <td>${T.scorer}</td>
-                                                <td>${T.playerName}</td>
-                                                <td>${T.pos}</td>
-                                                <td>${T.country}</td>
+                                                <td>${i+1}</td>
+                                                <td>${pd.getPlayerbyId(Ag.id).playerName}</td>
+                                                <td>${Ag.countG}</td>
+                                                <td>1</td>
                                             </tr>
+                                            </c:if>
                                         </c:forEach>
                                     </tbody>
                                 </table>

@@ -8,6 +8,7 @@ package controller;
 import dal.BlogDAO;
 import dal.ClubDAO;
 import dal.MatchDao;
+import dal.PlayerDAO;
 import dal.RankDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Club;
+import model.Top;
 import model.TopScorer;
 import model.User;
 import model.Video;
@@ -54,10 +56,19 @@ public class HomeServlet extends HttpServlet {
         ClubDAO cd = new ClubDAO();
         request.setAttribute("cd", cd);
         
+        RankDAO rd = new RankDAO();
+        List<Top> listAs = rd.getTopAssistant();
+        request.setAttribute("listAs", listAs);
+        
+        PlayerDAO pd = new PlayerDAO();
+        request.setAttribute("pd", pd);
+        
         BlogDAO bdao = new BlogDAO();
         List<Video> vlist = bdao.allVideo();
         request.setAttribute("vlist", vlist);
         request.getRequestDispatcher("index.jsp").forward(request, response);
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -85,5 +85,11 @@ public class Goal {
     public void setOg(boolean og) {
         this.og = og;
     }
+
+    @Override
+    public String toString() {
+        return "Goal{" + "goalId=" + goalId + ", scorer=" + scorer + ", assistant=" + assistant + ", matchId=" + matchId + ", time=" + time + ", og=" + og + '}';
+    }
+    
     
 }
