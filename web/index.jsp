@@ -373,19 +373,20 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Goal</th>
-                                            <th>Player</th>
-                                            <th>Pos</th>
-                                            <th>Country</th>
+                                            <th>No</th>
+                                            <th>Club</th>
+                                            <th>GD</th>
+                                            <th>Point</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${listTopScorer}" var ="T">
+                                        <c:forEach begin="0" end ="4" var ="i">
+                                            <c:set value="${listC.get(i)}" var="rc"/>
                                             <tr>
-                                                <td>${T.scorer}</td>
-                                                <td>${T.playerName}</td>
-                                                <td>${T.pos}</td>
-                                                <td>${T.country}</td>
+                                                <td>${i+1}</td>
+                                                <td>${cd.getClubById(rc.clubId).getClubName()}</td>
+                                                <td>${rc.GD}</td>
+                                                <td>${rc.point}</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

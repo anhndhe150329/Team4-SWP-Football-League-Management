@@ -86,9 +86,14 @@ public class RankDAO extends DBContext{
 //        for(TopScorer t: list){
 //            System.out.println(t);
 //    }
-           List<Rank> list = db.getAllRank();
-           for(Rank r:list){
-               System.out.println(r.getPoint());
+//           List<Rank> list = db.getAllRank();
+//           for(Rank r:list){
+//               System.out.println(r.getPoint());
+//               
+//           }
+           List<Top> list1 = db.getTopAssistant();
+           for(Top t:list1){
+               System.out.println(t);
            }
      } 
 }

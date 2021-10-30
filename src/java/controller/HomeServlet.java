@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Club;
+import model.Rank;
 import model.Top;
 import model.TopScorer;
 import model.User;
@@ -58,6 +59,8 @@ public class HomeServlet extends HttpServlet {
         
         RankDAO rd = new RankDAO();
         List<Top> listAs = rd.getTopAssistant();
+        List<Rank> listRClub = rd.getAllRank();
+        request.setAttribute("listC", listRClub);
         request.setAttribute("listAs", listAs);
         
         PlayerDAO pd = new PlayerDAO();
