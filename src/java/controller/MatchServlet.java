@@ -54,7 +54,6 @@ public class MatchServlet extends HttpServlet {
         if (null != op) {
             switch (op) {
                 case "view": {
-                    
                     MatchStat homeStat = md.getMatchStat(matchId, true);
                     MatchStat awayStat = md.getMatchStat(matchId, false);
                     List<MatchEvent> list = md.getMatchEvent(matchId);

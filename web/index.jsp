@@ -43,9 +43,11 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="hs-text">
-                                                <h4>30 september 2021 / 9:00 GMT+0000</h4>
-                                                <h2>Airrosten VS Lerenort in London</h2>
-                                                <a href="#" class="primary-btn">More Details</a>
+                                            <c:set var="home" value="${cd.getClubById(NextMatch.home)}" />
+                                            <c:set var="away" value="${cd.getClubById(NextMatch.away)}" />
+                                                <h4>${NextMatch.date} / 9:00 GMT+0000</h4>
+                                               <h2>${home.clubName}  VS ${away.clubName} in ${home.stadium} </h2>
+                                                <a href="match?op=view&matchId=${NextMatch.matchId}" class="primary-btn">More Details</a>
                                             </div>
                                         </div>
                                     </div>
@@ -431,20 +433,24 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Goal</th>
-                                            <th>Player</th>
-                                            <th>Pos</th>
-                                            <th>Country</th>
+                                            <th>No</th>
+                                            <th>Player Name</th>
+                                            <th>Assistant</th>
+                                            <th>Score</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${listTopScorer}" var ="T">
+                                        <c:forEach begin="0" end="4" step="1" var ="i">
+                                            <c:if test="${i<listAs.size()}">
+                                            <c:set var="Ag" value="${listAs.get(i)}"/>
+                                           
                                             <tr>
-                                                <td>${T.scorer}</td>
-                                                <td>${T.playerName}</td>
-                                                <td>${T.pos}</td>
-                                                <td>${T.country}</td>
+                                                <td>${i+1}</td>
+                                                <td>${pd.getPlayerbyId(Ag.id).playerName}</td>
+                                                <td>${Ag.countG}</td>
+                                                <td>1</td>
                                             </tr>
+                                            </c:if>
                                         </c:forEach>
                                     </tbody>
                                 </table>
