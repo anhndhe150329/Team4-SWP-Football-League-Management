@@ -43,7 +43,7 @@ public class RankDAO extends DBContext{
  
      public List<Rank> getAllRank(){
          List<Rank> list = new ArrayList();
-         String sql="select * from RankTable order by point desc";
+         String sql="  select * from RankTable r order by point desc, GD desc, (select c.clubName from club c where c.clubId= r.clubId) asc";
          try{
              PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
