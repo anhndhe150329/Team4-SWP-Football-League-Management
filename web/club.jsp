@@ -134,11 +134,7 @@
                                                     <h5>${p.playerName}</h5>
                                                 </div>
                                                 <div class="ci-name">${pd.getPos(p.pos).posName}</div>
-                                            </div> 
-                                            <c:if test="${acc.type==2&&acc.favClub==c.clubId}">
-                                                <a href="player?op=edit&id=${p.playerId}">Edit</a>
-                                                <a href="player?op=delete&id=${p.playerId}">Delete</a>
-                                            </c:if>
+                                            </div>
                                         </c:forEach>
                                     </div>
                                 </div>
