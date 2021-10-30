@@ -77,7 +77,7 @@ public class MatchDao extends DBContext {
     public Match getNextMatch(int id) {
         String s = "";
         if (id != 0) {
-            s = "and (home="+id+" or away="+id+")";
+            s = "and (home=" + id + " or away=" + id + ")";
         }
         String sql = "select top 1 * from [match] where [status]=0 " + s + " order by [date]";
         try {
@@ -270,27 +270,34 @@ public class MatchDao extends DBContext {
         }
     }
 
-    public void updateMatchResult(int matchId) {
-        String sql = "update [match] set homeScore = (select count(*) from goal join [match] on goal.matchId=[match].matchId \n"
-                + "join player on goal.scorer=player.playerId \n"
-                + "where (clubId=home and og=0)or(clubId=away and og= 1) ) where matchId=?\n"
-                + "update [match] set awayScore = (select count(*) from goal join [match] on goal.matchId=[match].matchId \n"
-                + "join player on goal.scorer=player.playerId \n"
-                + "where (clubId=away and og=0)or(clubId=home and og= 1) ) where matchId=?";
+    public int updateMatchResult(int matchId) {
+        String sql = "update [match] set homeScore =\n"
+                + "(select count(*) from goal g\n"
+                + "join [match] m on g.matchId=m.matchId\n"
+                + "join player p on g.scorer=p.playerId where g.matchId=? and ((p.clubId=m.home and og=0) or (p.clubId=m.away and og=1))\n"
+                + ") where matchId=?\n"
+                + "update [match] set awayScore =\n"
+                + "(select count(*) from goal g\n"
+                + "join [match] m on g.matchId=m.matchId\n"
+                + "join player p on g.scorer=p.playerId where g.matchId=? and ((p.clubId=m.away and og=0) or (p.clubId=m.home and og=1))\n"
+                + ") where matchId=?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, matchId);
             ps.setInt(2, matchId);
-            ps.executeQuery();
+            ps.setInt(3, matchId);
+            ps.setInt(4, matchId);
+            return ps.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e);
         }
+        return 0;
     }
 
     public static void main(String[] args) {
         MatchDao md = new MatchDao();
-        
+        System.out.println(md.updateMatchResult(2));;
     }
 
 }
