@@ -63,6 +63,9 @@
                         <div class="col-lg-6">
                             <div class="cc-text">
                                 <div class="ct-title">
+                                     <li>
+                                    <a  href="history?op=view&id=${c.clubId}" >History</a>
+                                </li>
                                     <h3>${c.clubName}</h3>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -123,6 +126,7 @@
                                         <a class="nav-link" data-toggle="tab" href="#tabs-${pos.posId}" role="tab">${pos.posName}</a>
                                     </li>
                                 </c:forEach>
+                                   
                             </ul><!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tabs-0" role="tabpanel">
