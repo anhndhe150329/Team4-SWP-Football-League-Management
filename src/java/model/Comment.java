@@ -7,23 +7,23 @@ import java.sql.Date;
  * @author asus
  */
 public class Comment {
-    int id;
+     int id;
     String content;
     int uid;
-    int matchid;
-    Date date;
     int pid;
+    Date date;
+    String username;
 
     public Comment() {
     }
 
-    public Comment(int id, String content, int uid, int matchid, Date date, int pid) {
+    public Comment(int id, String content, int uid, int pid, Date date, String username) {
         this.id = id;
         this.content = content;
         this.uid = uid;
-        this.matchid = matchid;
-        this.date = date;
         this.pid = pid;
+        this.date = date;
+        this.username = username;
     }
 
     public int getId() {
@@ -50,12 +50,12 @@ public class Comment {
         this.uid = uid;
     }
 
-    public int getMatchid() {
-        return matchid;
+    public int getPid() {
+        return pid;
     }
 
-    public void setMatchid(int matchid) {
-        this.matchid = matchid;
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 
     public Date getDate() {
@@ -66,13 +66,18 @@ public class Comment {
         this.date = date;
     }
 
-    public int getPid() {
-        return pid;
+    public String getUsername() {
+        return username;
     }
 
-    public void setPid(int pid) {
-        this.pid = pid;
+    public void setUsername(String username) {
+        this.username = username;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Comment{" + "id=" + id + ", content=" + content + ", uid=" + uid + ", pid=" + pid + ", date=" + date + ", username=" + username + '}';
+    }
+
+ 
 }

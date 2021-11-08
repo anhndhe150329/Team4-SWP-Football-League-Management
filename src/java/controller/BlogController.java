@@ -1,6 +1,8 @@
 package controller;
 
 import dal.BlogDAO;
+import dal.CommentDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Blog;
+import model.Comment;
+import model.User;
 import model.Video;
 
 /**
@@ -77,11 +81,18 @@ public class BlogController extends HttpServlet {
                 break;
 
             case "detail":
+               
                 int post_id = Integer.parseInt(request.getParameter("pid"));
                 //get post by post id
                 Blog pBlog = bdao.blogByPostID(post_id);
                 request.setAttribute("list", pBlog);
+                request.setAttribute("postid", post_id);
+                CommentDAO commentDAO = new CommentDAO();
+                List<Comment> comments = commentDAO.getCommentByMatchId(post_id);
+                request.setAttribute("comments", comments);
+                request.setAttribute("blogpost_id", post_id);
                 request.getRequestDispatcher("blog-details.jsp").forward(request, response);
+                
                 break;
             case "update":
                 String t = request.getParameter("title");
@@ -93,6 +104,25 @@ public class BlogController extends HttpServlet {
                 response.sendRedirect("blog?action=list");
 
                 break;
+                case "insertcomment":
+                UserDAO us = new UserDAO();
+                User a = (User) session.getAttribute("acc");
+                int userId = a.getUserId();
+
+                String content1 = request.getParameter("content1");
+                int id_post = Integer.parseInt(request.getParameter("id1"));
+
+                CommentDAO cdao = new CommentDAO();
+                //cdao.insertComment(content, userId,id_post);
+                // request.getRequestDispatcher("blog-details.jsp").forward(request, response);
+
+                //  response.sendRedirect("blog?action=detail&pid="+id_post);
+                PrintWriter out = response.getWriter();
+                out.print(content1);
+                out.print(userId);
+                out.print(id_post);
+                break;
+
 
         }
 
@@ -137,9 +167,11 @@ public class BlogController extends HttpServlet {
             case "detail":
                 int post_id = Integer.parseInt(request.getParameter("pid"));
                 //get post by post id
-
                 request.setAttribute("list", bdao.blogByPostID(post_id));
-                request.getRequestDispatcher("blog-details.jsp").forward(request, response);
+                request.setAttribute("blogpost_id", post_id);
+                 PrintWriter out = response.getWriter();
+            out.print(post_id);
+               // request.getRequestDispatcher("blog-details.jsp").forward(request, response);
                 break;
                 case "update":
                 String t = request.getParameter("title");
@@ -151,7 +183,25 @@ public class BlogController extends HttpServlet {
                 response.sendRedirect("blog?action=list");
 
                 break;
-
+                
+                
+       
+                 case "insertcomment":
+                HttpSession session = request.getSession();
+                UserDAO us = new UserDAO();
+                User a = (User) session.getAttribute("acc");
+                int userId = a.getUserId();
+                String content1 = request.getParameter("content1");
+                int id_post = Integer.parseInt(request.getParameter("id1"));
+                CommentDAO cdao = new CommentDAO();
+                cdao.insertComment(content1, userId,id_post);
+//                 request.getRequestDispatcher("blog-details.jsp").forward(request, response);
+                  response.sendRedirect("blog?action=detail&pid="+id_post);
+//                PrintWriter out = response.getWriter();
+//                out.print(content1);
+//                out.print(userId);
+//                out.print(id_post);
+                break;
         }
     }
 

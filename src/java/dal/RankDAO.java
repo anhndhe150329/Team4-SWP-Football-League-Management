@@ -24,15 +24,18 @@ public class RankDAO extends DBContext {
 
     public List<TopScorer> getTopScocer() {
         List<TopScorer> list = new ArrayList();
-        String sql = "select top(5) goal.scorer,player.playerName, player.pos, player.country from player join goal on player.playerId = goal.assistant\n"
-                + "order by goal.scorer desc";
+
+        String sql = "select  count (*) as goalno, playerName, clubName from goal  join player on player.playerId = goal.scorer\n"
+                + "                                                             join club on player.clubId = club.clubId\n"
+                + "group by scorer,playerName, clubName\n"
+                + "order by goalno desc";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 TopScorer t = new TopScorer(rs.getInt(1), rs.getString(2),
-                        rs.getInt(3), rs.getString(4));
+                        rs.getString(3));
                 list.add(t);
             }
             return list;
@@ -83,19 +86,6 @@ public class RankDAO extends DBContext {
     }
 
     public static void main(String[] args) {
-        RankDAO db = new RankDAO();
 
-//        List<TopScorer> list = db.getTopScocer();
-//        for(TopScorer t: list){
-//            System.out.println(t);
-//    }
-           List<Rank> list = db.getAllRank();
-           for(Rank r:list){
-               System.out.println(r.getGd());
-           }
-//        List<Top> list1 = db.getTopAssistant();
-//        for (Top t : list1) {
-//            System.out.println(t);
-//        }
     }
 }

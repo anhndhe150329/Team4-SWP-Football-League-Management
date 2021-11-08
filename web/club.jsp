@@ -63,6 +63,9 @@
                         <div class="col-lg-6">
                             <div class="cc-text">
                                 <div class="ct-title">
+                                     <li>
+                                    <a  href="history?op=view&id=${c.clubId}" >History</a>
+                                </li>
                                     <h3>${c.clubName}</h3>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -122,26 +125,34 @@
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#tabs-${pos.posId}" role="tab">${pos.posName}</a>
                                     </li>
+                                    
                                 </c:forEach>
+                                   
                             </ul><!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tabs-0" role="tabpanel">
                                     <div class="club-tab-content">
-                                        <c:forEach items="${pd.getPbyClubPos(c.clubId,0)}" var="p">
+                                        <c:set value="" var="s" />
+                                        <c:forEach items="${pd.SearchPlayer(c.clubId,0,s)}" var="p">
                                             <div class="ct-item">
                                                 <div class="ci-text">
                                                     <img src="img/player/${p.image}" alt="">
                                                     <h5>${p.playerName}</h5>
                                                 </div>
                                                 <div class="ci-name">${pd.getPos(p.pos).posName}</div>
+                                                  
                                             </div>
+                                                <c:if test="${acc.type==2&&acc.favClub==c.clubId}">
+                                                    <a href="player?op=edit&id=${p.playerId}">Edit</a>
+                                                    <a href="player?op=delete&id=${p.playerId}">Delete</a>
+                                                </c:if>
                                         </c:forEach>
                                     </div>
                                 </div>
                                 <c:forEach items="${pd.getAllPos()}" var="pos">
                                     <div class="tab-pane" id="tabs-${pos.posId}" role="tabpanel">
                                         <div class="club-tab-content">
-                                            <c:forEach items="${pd.getPbyClubPos(c.clubId,pos.posId)}" var="p">
+                                            <c:forEach items="${pd.SearchPlayer(c.clubId,pos.posId,s)}" var="p">
                                                 <div class="ct-item">
                                                     <div class="ci-text">
                                                         <img src="img/player/${p.image}" alt="">

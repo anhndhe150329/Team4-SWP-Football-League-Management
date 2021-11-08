@@ -44,6 +44,7 @@ public class PlayerServlet extends HttpServlet {
         if ("list".equals(op)) {
             int club = 0;
             int pos = 0;
+            
             String sclub = request.getParameter("club");
             String spos = request.getParameter("pos");
             if (sclub != null) {
@@ -52,11 +53,17 @@ public class PlayerServlet extends HttpServlet {
             if (spos != null) {
                 pos = Integer.parseInt(spos);
             }
+            
+            String name=request.getParameter("name");
+            if (name == null) {
+                name = "";
+            }
             ClubDAO cd = new ClubDAO();
             request.setAttribute("cd", cd);
             request.setAttribute("pd", pd);
             request.setAttribute("club", club);
             request.setAttribute("pos", pos);
+            request.setAttribute("name", name);
             request.getRequestDispatcher("ListPlayer.jsp").forward(request, response);
         } else if ("add".equals(op)) {
             request.setAttribute("poss", pd.getAllPos());

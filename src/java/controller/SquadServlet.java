@@ -127,6 +127,7 @@ public class SquadServlet extends HttpServlet {
                 sd.UpdateSquadInfo(si);
                 request.getRequestDispatcher("squad?op=edit&mId=" + smid + "&isHome=" + sisHome).forward(request, response);
                 break;
+            
             }
             default:
                 break;
