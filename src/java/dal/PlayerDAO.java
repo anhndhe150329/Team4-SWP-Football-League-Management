@@ -84,17 +84,16 @@ public class PlayerDAO extends DBContext {
         return null;
     }
 
-    public List<Player> getPbyClubPos(int clubId, int pos) {
+    public List<Player> SearchPlayer(int clubId, int pos, String name) {
         List<Player> list = new ArrayList<>();
-        String s="";
+        String s="where playerName like '%" +name +"%' ";
         if(clubId!=0){
             s+="and clubId="+clubId;
         }
         if(pos!=0){
             s+="and pos="+pos;
         }
-        
-        String sql = "select * from player where 1=1 "+s;
+        String sql = "select * from player "+s;
         System.out.println(sql);
         try {
             PreparedStatement st = connection.prepareStatement(sql);
