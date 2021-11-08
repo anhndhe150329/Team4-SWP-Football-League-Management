@@ -2,35 +2,7 @@
 <!--
 DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
-<<<<<<< HEAD
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-||||||| f4fe143
-<<<<<<< HEAD
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-||||||| 3326ae1
-Copyright (c) 2006, 2016 Oracle and/or its affiliates. All rights reserved.
-=======
 Copyright (c) 2008, 2016 Oracle and/or its affiliates. All rights reserved.
->>>>>>> f5c3285cd5d7fcd954e023e0168e6f2b5fcfbfa9
-=======
-<<<<<<< HEAD
-Copyright (c) 2008, 2016 Oracle and/or its affiliates. All rights reserved.
-=======
-Copyright (c) 2006, 2016 Oracle and/or its affiliates. All rights reserved.
->>>>>>> 9ef1ae53b397ff57e1701eed1ba9845e246ca3d0
->>>>>>> 316a640a2314e1cbc9ec78bc94ec31ebb499529b
 
 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
 Other names may be trademarks of their respective owners.
@@ -67,41 +39,6 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <project default="-deploy-ant" basedir=".">
-<<<<<<< HEAD
-    <target name="-init" if="deploy.ant.enabled">
-        <property file="${deploy.ant.properties.file}"/>
-        <tempfile property="temp.module.folder" prefix="tomcat" destdir="${java.io.tmpdir}"/>
-        <unwar src="${deploy.ant.archive}" dest="${temp.module.folder}">
-            <patternset includes="META-INF/context.xml"/>
-        </unwar>
-        <xmlproperty file="${temp.module.folder}/META-INF/context.xml"/>
-        <delete dir="${temp.module.folder}"/>
-    </target>
-    <target name="-check-credentials" if="deploy.ant.enabled" depends="-init">
-        <fail message="Tomcat password has to be passed as tomcat.password property.">
-            <condition>
-                <not>
-                    <isset property="tomcat.password"/>
-                </not>
-            </condition>
-        </fail>
-    </target>
-    <target name="-deploy-ant" if="deploy.ant.enabled" depends="-init,-check-credentials">
-        <echo message="Deploying ${deploy.ant.archive} to ${Context(path)}"/>
-        <taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask"
-                 classpath="${tomcat.home}/server/lib/catalina-ant.jar"/>
-        <deploy url="${tomcat.url}/manager" username="${tomcat.username}"
-                password="${tomcat.password}" path="${Context(path)}"
-                war="${deploy.ant.archive}"/>
-        <property name="deploy.ant.client.url" value="${tomcat.url}${Context(path)}"/>
-    </target>
-    <target name="-undeploy-ant" if="deploy.ant.enabled" depends="-init,-check-credentials">
-        <echo message="Undeploying ${Context(path)}"/>
-        <taskdef name="undeploy"  classname="org.apache.catalina.ant.UndeployTask"
-                classpath="${tomcat.home}/server/lib/catalina-ant.jar"/>
-        <undeploy url="${tomcat.url}/manager" username="${tomcat.username}" 
-                  password="${tomcat.password}" path="${Context(path)}"/>
-||||||| f4fe143
     <target name="-init-cl-deployment-env" if="deploy.ant.enabled">
         <property file="${deploy.ant.properties.file}" />
         <available file="${deploy.ant.docbase.dir}/WEB-INF/sun-web.xml" property="sun.web.present"/>
@@ -209,40 +146,5 @@ Contributor(s):
         <get username="${gfv3.username}" password="${gfv3.password}" src="${gfv3.admin.url}/__asadmin/undeploy?name=${ant.project.name}"
             dest="${gfv3.results.file}"/>
         <delete file="${gfv3.results.file}"/>
-=======
-    <target name="-init" if="deploy.ant.enabled">
-        <property file="${deploy.ant.properties.file}"/>
-        <tempfile property="temp.module.folder" prefix="tomcat" destdir="${java.io.tmpdir}"/>
-        <unwar src="${deploy.ant.archive}" dest="${temp.module.folder}">
-            <patternset includes="META-INF/context.xml"/>
-        </unwar>
-        <xmlproperty file="${temp.module.folder}/META-INF/context.xml"/>
-        <delete dir="${temp.module.folder}"/>
-    </target>
-    <target name="-check-credentials" if="deploy.ant.enabled" depends="-init">
-        <fail message="Tomcat password has to be passed as tomcat.password property.">
-            <condition>
-                <not>
-                    <isset property="tomcat.password"/>
-                </not>
-            </condition>
-        </fail>
-    </target>
-    <target name="-deploy-ant" if="deploy.ant.enabled" depends="-init,-check-credentials">
-        <echo message="Deploying ${deploy.ant.archive} to ${Context(path)}"/>
-        <taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask"
-                 classpath="${tomcat.home}/server/lib/catalina-ant.jar"/>
-        <deploy url="${tomcat.url}/manager" username="${tomcat.username}"
-                password="${tomcat.password}" path="${Context(path)}"
-                war="${deploy.ant.archive}"/>
-        <property name="deploy.ant.client.url" value="${tomcat.url}${Context(path)}"/>
-    </target>
-    <target name="-undeploy-ant" if="deploy.ant.enabled" depends="-init,-check-credentials">
-        <echo message="Undeploying ${Context(path)}"/>
-        <taskdef name="undeploy"  classname="org.apache.catalina.ant.UndeployTask"
-                classpath="${tomcat.home}/server/lib/catalina-ant.jar"/>
-        <undeploy url="${tomcat.url}/manager" username="${tomcat.username}" 
-                  password="${tomcat.password}" path="${Context(path)}"/>
->>>>>>> 316a640a2314e1cbc9ec78bc94ec31ebb499529b
     </target>
 </project>
