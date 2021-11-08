@@ -83,7 +83,7 @@ public class PlayerServlet extends HttpServlet {
             request.setAttribute("pd", pd);
             request.getRequestDispatcher("EditPlayer.jsp").forward(request, response);
         } else if ("Update".equals(op)) {
-            int id = Integer.parseInt(request.getParameter("id"));            
+            int id = Integer.parseInt(request.getParameter("id"));
             String name = request.getParameter("name");
             Date dob = Date.valueOf(request.getParameter("dob"));
             int pos = Integer.parseInt(request.getParameter("pos"));
@@ -97,18 +97,17 @@ public class PlayerServlet extends HttpServlet {
         }
     }
 
-
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-/**
- * Handles the HTTP <code>GET</code> method.
- *
- * @param request servlet request
- * @param response servlet response
- * @throws ServletException if a servlet-specific error occurs
- * @throws IOException if an I/O error occurs
- */
-@Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -122,7 +121,7 @@ public class PlayerServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -133,7 +132,7 @@ public class PlayerServlet extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

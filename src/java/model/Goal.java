@@ -10,12 +10,12 @@ package model;
  * @author Asus
  */
 public class Goal {
-    int goalId;
-    int scorer;
-    int assistant;
-    int matchId;
-    int time;
-    boolean og;
+   private int goalId;
+   private int scorer;
+   private int assistant;
+   private int matchId;
+   private int time;
+   private boolean og;
 
     public Goal() {
     }
@@ -85,5 +85,11 @@ public class Goal {
     public void setOg(boolean og) {
         this.og = og;
     }
+
+    @Override
+    public String toString() {
+        return "Goal{" + "goalId=" + goalId + ", scorer=" + scorer + ", assistant=" + assistant + ", matchId=" + matchId + ", time=" + time + ", og=" + og + '}';
+    }
+    
     
 }
