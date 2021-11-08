@@ -167,10 +167,11 @@
                                                         <li><a href="favClub?op=list">Your Favorite Club</a></li>
                                                         </c:if>
                                                         <li><a href="squad?op=edit"> Favorite Squad</a></li>
+                                                        <li><a href="schedule?op=view&clubId=${acc.favClub}">Club Schedule</a></li>
                                                     </c:otherwise>
                                                 </c:choose>
 
-                                            <li><a href="./schedule.jsp">Club Schedule</a></li>
+                                            
                                             <li><a href="./result.jsp"> Recent Results</a></li>
                                             
                                         </ul>

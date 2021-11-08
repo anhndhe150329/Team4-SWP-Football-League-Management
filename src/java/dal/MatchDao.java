@@ -24,12 +24,11 @@ public class MatchDao extends DBContext {
 
     public List<Match> getAllMatchById(int id) {
         List<Match> list = new ArrayList();
-        String sql = "select matchId, home, away, [date], homeScore, awayScore, [status]\n"
-                + "from [match] as m join [club] as c on (m.home = c.clubId) or(m.away = c.clubId) where c.clubId=? \n"
-                + "order by [date] ";
+        String sql = "select * from match where home =? or away =? order by [date]";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
+            ps.setInt(2, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Match m = new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5), rs.getInt(6), rs.getBoolean(7));
