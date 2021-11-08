@@ -52,11 +52,16 @@ public class PlayerServlet extends HttpServlet {
             if (spos != null) {
                 pos = Integer.parseInt(spos);
             }
+            String key="";
+            if (true) {
+                
+            }
             ClubDAO cd = new ClubDAO();
             request.setAttribute("cd", cd);
             request.setAttribute("pd", pd);
             request.setAttribute("club", club);
             request.setAttribute("pos", pos);
+            request.setAttribute("key", key);
             request.getRequestDispatcher("ListPlayer.jsp").forward(request, response);
         } else if ("add".equals(op)) {
             request.setAttribute("poss", pd.getAllPos());

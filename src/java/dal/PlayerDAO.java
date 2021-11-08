@@ -93,6 +93,7 @@ public class PlayerDAO extends DBContext {
         if(pos!=0){
             s+="and pos="+pos;
         }
+        
         String sql = "select * from player where 1=1 "+s;
         System.out.println(sql);
         try {
@@ -203,11 +204,12 @@ public class PlayerDAO extends DBContext {
         return null;
     }
 
+ 
     public static void main(String[] args) {
-        PlayerDAO db = new PlayerDAO();
-        List<Player> list = db.getPbyClubPos(0, 1);
-        for(Player p : list){
-            System.out.println(p.getPlayerId());
-        }
+//        PlayerDAO db = new PlayerDAO();
+//        List<Player> list = db.getPbyClubPos(0, 0,"a");
+//        for(Player p : list){
+//            System.out.println(p.getPlayerId());
+//        }
     }
 }
