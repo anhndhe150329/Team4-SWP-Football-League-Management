@@ -403,20 +403,25 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Goal</th>
+                                            <th>No</th>                                          
                                             <th>Player</th>
-                                            <th>Pos</th>
-                                            <th>Country</th>
+                                            <th>Goal</th>
+                                            <th>Club</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${listTopScorer}" var ="T">
+                                        <c:forEach begin="0" end="4" step="1" var ="i">
+                                            <c:if test="${i<listTopScorer.size()}">
+                                                <c:set var="T" value="${listTopScorer.get(i)}"/>
                                             <tr>
-                                                <td>${T.scorer}</td>
+                                                <td>${i+1}</td>
                                                 <td>${T.playerName}</td>
-                                                <td>${T.pos}</td>
-                                                <td>${T.country}</td>
+                                                <td>${T.goalno}</td>                                        
+                                                <td>${T.clubName}</td>
+                                                
                                             </tr>
+                                            </c:if>
                                         </c:forEach>
                                     </tbody>
                                 </table>
