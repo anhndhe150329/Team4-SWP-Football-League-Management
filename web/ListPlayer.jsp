@@ -27,17 +27,18 @@
         
         <form action="player" method="get">
             <select name="club">
-                <option value="0" ${club==0?"selected":""} >ALL</option>
+                <option value="0" ${club==0?"selected":""} >Select Club</option>
                 <c:forEach  items="${cd.getALL()}" var="c">
                     <option value="${c.clubId}" ${club==c.clubId?"selected":""} >${c.clubName}</option>
                 </c:forEach>
             </select>
             <select name="pos">
-                <option value="0" ${pos==0?"selected":""} >ALL</option>
+                <option value="0" ${pos==0?"selected":""} >Select Position</option>
                 <c:forEach  items="${pd.getAllPos()}" var="po">
                     <option value="${po.posId}" ${pos==po.posId?"selected":""} >${po.posName}</option>
                 </c:forEach>
             </select>
+                <input type="text" name="name" value="${name}"  />
             <input value="list" name="op" hidden=""/>
             <input type="submit" value="Search" />
 
@@ -57,7 +58,7 @@
 
                    
                 </tr>
-                <c:forEach items="${pd.getPbyClubPos(club, pos)}" var="p">
+                <c:forEach items="${pd.SearchPlayer(club, pos,name)}" var="p">
                 <tr>
                     <td>${p.playerName}</td>
                     <td>${cd.getClubById(p.clubId).clubName}</td>

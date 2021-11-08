@@ -127,7 +127,8 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tabs-0" role="tabpanel">
                                     <div class="club-tab-content">
-                                        <c:forEach items="${pd.getPbyClubPos(c.clubId,0)}" var="p">
+                                        <c:set property="name" var="s"/>
+                                        <c:forEach items="${pd.SearchPlayer(c.clubId,0, s)}" var="p">
                                             <div class="ct-item">
                                                 <div class="ci-text">
                                                     <img src="img/player/${p.image}" alt="">
@@ -145,7 +146,7 @@
                                 <c:forEach items="${pd.getAllPos()}" var="pos">
                                     <div class="tab-pane" id="tabs-${pos.posId}" role="tabpanel">
                                         <div class="club-tab-content">
-                                            <c:forEach items="${pd.getPbyClubPos(c.clubId,pos.posId)}" var="p">
+                                            <c:forEach items="${pd.SearchPlayer(c.clubId,pos.posId,s)}" var="p">
                                                 <div class="ct-item">
                                                     <div class="ci-text">
                                                         <img src="img/player/${p.image}" alt="">
