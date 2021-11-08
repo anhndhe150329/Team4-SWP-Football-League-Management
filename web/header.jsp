@@ -146,13 +146,14 @@
                                     <li class="${active=="club"?"active":""}"><a href="club?op=list">Club</a></li>
                                     <li class="${active=="schedule"?"active":""}"><a href="schedule?op=view">Schedule</a></li>
                                     <li><a href="player?op=list">Players</a></li>
-                                    <li><a href="rank.jsp">Rank</a></li>
+                                    <li><a href="rank">Rank</a></li>
                                     <li><a href="#">Profile</a>
                                         <ul class="dropdown">
                                             <c:choose>
                                                 <c:when test="${acc==null}">
                                                     <li><a href="login">Your Profile</a></li>
                                                     <li><a href="login">Your Favorite Club</a></li>
+                                                    <li><a href="login"> Favorite Squad</a></li>
                                                     </c:when>
                                                     <c:otherwise>
                                                     <li><a href="profile">Your Profile</a></li>
@@ -165,11 +166,13 @@
                                                         <c:if test="${acc.favClub==0&&acc.type==3}">
                                                         <li><a href="favClub?op=list">Your Favorite Club</a></li>
                                                         </c:if>
+                                                        <li><a href="squad?op=edit"> Favorite Squad</a></li>
                                                     </c:otherwise>
                                                 </c:choose>
 
                                             <li><a href="./schedule.jsp">Club Schedule</a></li>
                                             <li><a href="./result.jsp"> Recent Results</a></li>
+                                            
                                         </ul>
                                     </li>
 

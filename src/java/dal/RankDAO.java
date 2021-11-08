@@ -20,11 +20,12 @@ import model.TopScorer;
  *
  * @author admin
  */
-public class RankDAO extends DBContext{
-     public List<TopScorer> getTopScocer() {
+public class RankDAO extends DBContext {
+
+    public List<TopScorer> getTopScocer() {
         List<TopScorer> list = new ArrayList();
-        String sql = "select top(5) goal.scorer,player.playerName, player.pos, player.country from player join goal on player.playerId = goal.assistant\n" +
-"order by goal.scorer desc";
+        String sql = "select top(5) goal.scorer,player.playerName, player.pos, player.country from player join goal on player.playerId = goal.assistant\n"
+                + "order by goal.scorer desc";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -40,23 +41,26 @@ public class RankDAO extends DBContext{
         }
         return null;
     }
- 
-     public List<Rank> getAllRank(){
-         List<Rank> list = new ArrayList();
-         String sql="  select * from RankTable r order by point desc, GD desc, (select c.clubName from club c where c.clubId= r.clubId) asc";
-         try{
-             PreparedStatement ps = connection.prepareStatement(sql);
+
+    public List<Rank> getAllRank() {
+        List<Rank> list = new ArrayList();
+        String sql = "select clubId,(W+D+L) as App, W,D,L,GF,GA,(GF-GA) as GD, (W*3+D) as point \n"
+                + "  from RankTable r \n"
+                + "  order by point desc,GD desc, (select c.clubName from club c where c.clubId= r.clubId) asc";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Rank r = new Rank(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9));
                 list.add(r);
             }
             return list;
-         }catch(SQLException ex){
-             System.out.println(ex);
-         }
-         return null;
-     }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+
     public List<Top> getTopAssistant() {
         List<Top> list = new ArrayList();
         String sql = "   select assistant, count (* ) as Agoal from goal where assistant >0 \n"
@@ -68,7 +72,6 @@ public class RankDAO extends DBContext{
 
             while (rs.next()) {
                 Top g = new Top(rs.getInt(1), rs.getInt(2)
-                       
                 );
 
                 list.add(g);
@@ -79,21 +82,20 @@ public class RankDAO extends DBContext{
         return null;
     }
 
-     public static void main(String[] args) {
-          RankDAO db = new RankDAO();
+    public static void main(String[] args) {
+        RankDAO db = new RankDAO();
 
 //        List<TopScorer> list = db.getTopScocer();
 //        for(TopScorer t: list){
 //            System.out.println(t);
 //    }
-//           List<Rank> list = db.getAllRank();
-//           for(Rank r:list){
-//               System.out.println(r.getPoint());
-//               
-//           }
-           List<Top> list1 = db.getTopAssistant();
-           for(Top t:list1){
-               System.out.println(t);
+           List<Rank> list = db.getAllRank();
+           for(Rank r:list){
+               System.out.println(r.getGd());
            }
-     } 
+//        List<Top> list1 = db.getTopAssistant();
+//        for (Top t : list1) {
+//            System.out.println(t);
+//        }
+    }
 }

@@ -13,8 +13,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Squad;
 import model.SquadInfo;
+import model.User;
 
 /**
  *
@@ -37,91 +39,95 @@ public class SquadServlet extends HttpServlet {
         String op = request.getParameter("op");
         String smid = request.getParameter("mId");
         String sisHome = request.getParameter("isHome");
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("acc");
         SquadDAO sd = new SquadDAO();
-        if(op==null){
-            op="";
+        if (op == null) {
+            op = "";
         }
         switch (op) {
-            case "edit":
-                {
-                    int matchId = Integer.parseInt(smid);
-                    boolean isHome = Boolean.valueOf(sisHome);
-                    Squad s = sd.getSbyMId(matchId, isHome);
-                    request.setAttribute("sId", s.getSquadId());
-                    PlayerDAO pd = new PlayerDAO();
+            case "edit": {
+                int matchId = 0;
+                boolean isHome = true;
+                Squad s = new Squad();
+                if (smid != null && !smid.equals("")) {
+                    matchId = Integer.parseInt(smid);
+                    isHome = Boolean.valueOf(sisHome);
+                    s = sd.getSbyMId(matchId, isHome);
                     request.setAttribute("mId", matchId);
                     request.setAttribute("isHome", isHome);
-                    request.setAttribute("pd", pd);
-                    request.setAttribute("sd", sd);
-                    request.getRequestDispatcher("SquadInfo.jsp").forward(request, response);
-                    break;
+                } else {
+                    s = sd.getSbyUserId(u.getUserId());
                 }
-            case "add":
-                {
-                    int sId = Integer.parseInt(request.getParameter("sId"));
-                    int posNo = Integer.parseInt(request.getParameter("posNo"));
+                request.setAttribute("sId", s.getSquadId());
+                PlayerDAO pd = new PlayerDAO();
+                request.setAttribute("pd", pd);
+                request.setAttribute("sd", sd);
+                request.getRequestDispatcher("SquadInfo.jsp").forward(request, response);
+                break;
+            }
+            case "add": {
+                int sId = Integer.parseInt(request.getParameter("sId"));
+                int posNo = Integer.parseInt(request.getParameter("posNo"));
+                boolean check = false;
+                if (!smid.equals("")) {
+                    check = true;
                     int matchId = Integer.parseInt(smid);
                     boolean isHome = Boolean.valueOf(sisHome);
-                    request.setAttribute("op", op);
                     request.setAttribute("mId", matchId);
                     request.setAttribute("isHome", isHome);
-                    request.setAttribute("posNo", posNo);
-                    request.setAttribute("sId", sId);
-                    PlayerDAO pd = new PlayerDAO();
-                    request.setAttribute("pd", pd);
-                    request.getRequestDispatcher("EditSquadInfo.jsp").forward(request, response);
-                    break;
                 }
-            case "Add":
-                {
-                    int sId = Integer.parseInt(request.getParameter("sId"));
-                    int pId = Integer.parseInt(request.getParameter("playerId"));
-                    int posNo = Integer.parseInt(request.getParameter("posNo"));
+                request.setAttribute("check", check);
+                request.setAttribute("op", op);
+                request.setAttribute("posNo", posNo);
+                request.setAttribute("sId", sId);
+                PlayerDAO pd = new PlayerDAO();
+                request.setAttribute("pd", pd);
+                request.getRequestDispatcher("EditSquadInfo.jsp").forward(request, response);
+                break;
+            }
+            case "Add": {
+                int sId = Integer.parseInt(request.getParameter("sId"));
+                int pId = Integer.parseInt(request.getParameter("playerId"));
+                int posNo = Integer.parseInt(request.getParameter("posNo"));
+                SquadInfo si = new SquadInfo(pId, sId, posNo);
+                sd.addSquadInfo(si);
+                request.getRequestDispatcher("squad?op=edit&mId=" + smid + "&isHome=" + sisHome).forward(request, response);
+                break;
+            }
+            case "delete": {
+                int sId = Integer.parseInt(request.getParameter("sId"));
+                int posNo = Integer.parseInt(request.getParameter("posNo"));
+                sd.deleteSquadInfo(sd.getOneSquadInfo(sId, posNo).getSquadInfoId());
+                request.getRequestDispatcher("squad?op=edit&mId=" + smid + "&isHome=" + sisHome).forward(request, response);
+                break;
+            }
+            case "change": {
+                int sId = Integer.parseInt(request.getParameter("sId"));
+                int posNo = Integer.parseInt(request.getParameter("posNo"));
+                if (!smid.equals("")) {
                     int matchId = Integer.parseInt(smid);
                     boolean isHome = Boolean.valueOf(sisHome);
-                    SquadInfo si = new SquadInfo(pId, sId, posNo);
-                    sd.addSquadInfo(si);
-                    request.getRequestDispatcher("match?op=edit&mId="+matchId+"&isHome="+isHome).forward(request, response);
-                    break;
-                }
-            case "delete":
-                {
-                    int sId = Integer.parseInt(request.getParameter("sId"));
-                    int posNo = Integer.parseInt(request.getParameter("posNo"));
-                    int matchId = Integer.parseInt(smid);
-                    boolean isHome = Boolean.valueOf(sisHome);
-                    sd.deleteSquadInfo(sd.getOneSquadInfo(sId, posNo).getSquadInfoId());
-                    request.getRequestDispatcher("match?op=edit&mId="+matchId+"&isHome="+isHome).forward(request, response);
-                    break;
-                }
-            case "change":
-                {
-                    int sId = Integer.parseInt(request.getParameter("sId"));
-                    int posNo = Integer.parseInt(request.getParameter("posNo"));
-                    int matchId = Integer.parseInt(smid);
-                    boolean isHome = Boolean.valueOf(sisHome);
-                    request.setAttribute("op", op);
                     request.setAttribute("mId", matchId);
                     request.setAttribute("isHome", isHome);
-                    request.setAttribute("posNo", posNo);
-                    request.setAttribute("sId", sId);
-                    PlayerDAO pd = new PlayerDAO();
-                    request.setAttribute("pd", pd);
-                    request.getRequestDispatcher("EditSquadInfo.jsp").forward(request, response);
-                    break;
                 }
-            case "Change":
-                {
-                    int sId = Integer.parseInt(request.getParameter("sId"));
-                    int pId = Integer.parseInt(request.getParameter("playerId"));
-                    int posNo = Integer.parseInt(request.getParameter("posNo"));
-                    int matchId = Integer.parseInt(smid);
-                    boolean isHome = Boolean.valueOf(sisHome);
-                    SquadInfo si = new SquadInfo(pId, sId, posNo);
-                    sd.UpdateSquadInfo(si);
-                    request.getRequestDispatcher("match?op=edit&mId="+matchId+"&isHome="+isHome).forward(request, response);
-                    break;
-                }
+                request.setAttribute("op", op);
+                request.setAttribute("posNo", posNo);
+                request.setAttribute("sId", sId);
+                PlayerDAO pd = new PlayerDAO();
+                request.setAttribute("pd", pd);
+                request.getRequestDispatcher("EditSquadInfo.jsp").forward(request, response);
+                break;
+            }
+            case "Change": {
+                int sId = Integer.parseInt(request.getParameter("sId"));
+                int pId = Integer.parseInt(request.getParameter("playerId"));
+                int posNo = Integer.parseInt(request.getParameter("posNo"));
+                SquadInfo si = new SquadInfo(pId, sId, posNo);
+                sd.UpdateSquadInfo(si);
+                request.getRequestDispatcher("squad?op=edit&mId=" + smid + "&isHome=" + sisHome).forward(request, response);
+                break;
+            }
             default:
                 break;
         }

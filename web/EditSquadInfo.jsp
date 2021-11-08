@@ -14,9 +14,9 @@
     </head>
     <style>
         form  {
-    margin: 30px;
-    
-     }
+            margin: 30px;
+
+        }
     </style>
     <body>
         <%@include file="header.jsp" %>
@@ -34,15 +34,18 @@
             <input name="posNo" value="${posNo}" hidden="" />
             <br/>
             <select name="playerId" >
-                <c:forEach items="${pd.getPlayerbyclubId(acc.favClub)}" var="p" >
-                    <option value="${p.playerId}" >${p.playerName}</option>
-                </c:forEach>
+                <c:if test="${check}"><c:set value="${pd.getPlayerbyclubId(acc.favClub)}" var="list"/></c:if>
+                <c:if test="${!check}"><c:set value="${pd.getAllPlayer()}" var="list"/></c:if>
+                    <c:forEach items="${list}" var="p" >
+                        <option value="${p.playerId}" >${p.playerName}</option>
+                    </c:forEach>
+                
             </select>
             <br/>
             <input name="mId" value="${mId}" hidden="" /> 
             <input name="isHome" value="${isHome}" hidden="" /> 
             <input name="sId" value="${sId}" hidden="" />
-            
+
             <input type="submit" value="Confirm" />
         </form>
         <%@include file="footer.jsp" %>

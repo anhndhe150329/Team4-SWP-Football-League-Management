@@ -1,5 +1,6 @@
 package controller;
 
+import dal.SquadDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Squad;
 import model.User;
 
 /**
@@ -84,54 +86,59 @@ public class RegisterAccountServlet extends HttpServlet {
             dob = new java.sql.Date((new SimpleDateFormat("yyyy-dd-MM").parse(request.getParameter("dob"))).getTime());
         } catch (ParseException e) {
 
-        } 
-        String email=request.getParameter("email");
+        }
+        String email = request.getParameter("email");
         int role = Integer.parseInt(request.getParameter("role"));
         if (password.isEmpty() || !password.equals(repassword)) {
             request.setAttribute("fail", "Mật khẩu và Nhập lại mật khẩu không khớp nhau hoặc rỗng!!");
-        }
-        else if (!checkInputEmail(email)) {
+        } else if (!checkInputEmail(email)) {
             request.setAttribute("fail", "Email không hợp lệ!!");
-            
-        }else if (name.isEmpty()) {
+
+        } else if (name.isEmpty()) {
             request.setAttribute("fail", "Email không hợp lệ!!");
-        
-        }else if(role==2){
-            User u= new User();
+
+        } else if (role == 2) {
+            User u = new User();
             u.setUsername(username);
             u.setPassword(password);
-            
+
             u.setName(name);
             u.setGender(g);
             u.setDob(dob);
             u.setEmail(email);
             u.setType(4);
-            udao.signup(u);            
+            SquadDAO sd = new SquadDAO();
+            int id = udao.signup(u);
+            Squad s = new Squad(false, id);
+            sd.addUserSquad(s);
             request.setAttribute("mess1", "Request success!!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
-            return;  
-        }
-        else{
-            User u= new User();
+            return;
+        } else {
+            User u = new User();
             u.setUsername(username);
-            u.setPassword(password);            
+            u.setPassword(password);
             u.setName(name);
             u.setGender(g);
             u.setDob(dob);
             u.setEmail(email);
             u.setType(role);
-            udao.signup(u);           
+            SquadDAO sd = new SquadDAO();
+            int id = udao.signup(u);
+            Squad s = new Squad(false, id);
+            sd.addUserSquad(s);
             request.setAttribute("mess", "Tạo tài khoản thành công!!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
-            return;  
+            return;
         }
-         request.getRequestDispatcher("usertype").forward(request, response);
+        request.getRequestDispatcher("usertype").forward(request, response);
     }
-        /**
-         * Returns a short description of the servlet.
-         *
-         * @return a String containing servlet description
-         */
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     public boolean checkString(String txt) {
         if (txt == null || txt.isEmpty()) {
             return false;

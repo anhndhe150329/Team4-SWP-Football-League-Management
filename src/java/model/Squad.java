@@ -19,6 +19,11 @@ public class Squad {
     public Squad() {
     }
 
+    public Squad(boolean isMatch, int userId) {
+        this.isMatch = isMatch;
+        this.userId = userId;
+    }
+
     public Squad(boolean isMatch, boolean isHome, int matchId) {
         this.isMatch = isMatch;
         this.isHome = isHome;

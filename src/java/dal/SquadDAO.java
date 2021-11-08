@@ -52,6 +52,22 @@ public class SquadDAO extends DBContext {
         return null;
     }
 
+    public Squad getSbyUserId(int userId) {
+        String sql = "select*from squad where userId=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Squad s = new Squad(rs.getInt(1), rs.getBoolean(2), rs.getBoolean(3), rs.getInt(4), rs.getInt(5));
+                return s;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
     public List<SquadInfo> getSquadInfo(int sId, int type) {
         List<SquadInfo> list = new ArrayList();
         String s = "";
@@ -132,8 +148,6 @@ public class SquadDAO extends DBContext {
             System.out.println(e);
         }
     }
-    
-    
 
     public Squad getSquad(int mId, boolean isHome) {
         String sql = "select*from Squad where matchId = ? and isHome = ?";
@@ -143,7 +157,7 @@ public class SquadDAO extends DBContext {
             ps.setBoolean(2, isHome);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Squad s = new Squad(rs.getInt(1), rs.getBoolean(2), rs.getBoolean(3), rs.getInt(4),rs.getInt(5));
+                Squad s = new Squad(rs.getInt(1), rs.getBoolean(2), rs.getBoolean(3), rs.getInt(4), rs.getInt(5));
                 return s;
             }
 
@@ -165,6 +179,17 @@ public class SquadDAO extends DBContext {
             System.out.println(e);
         }
     }
+     public void addUserSquad(Squad s) {
+        String sql = "insert into Squad(isMatch,userId) values(?,?)";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setBoolean(1, s.isIsMatch());
+            ps.setInt(2, s.getUserId());
+            ps.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
 
     public void deleteSquad(int id) {
         String sql = "delete Squad where squadId = ?";
@@ -179,8 +204,9 @@ public class SquadDAO extends DBContext {
 
     public static void main(String[] args) {
         SquadDAO sd = new SquadDAO();
-        Squad s = new Squad(true, true, 17);
-        sd.addSquad(s);
+        Squad s = new Squad(false, 24);
+        sd.addUserSquad(s);
+        System.out.println(s.getMatchId());
     }
 
 }

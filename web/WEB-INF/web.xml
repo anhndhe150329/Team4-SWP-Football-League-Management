@@ -76,6 +76,10 @@
         <servlet-name>SquadServlet</servlet-name>
         <servlet-class>controller.SquadServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RankServlet</servlet-name>
+        <servlet-class>controller.RankServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -147,6 +151,10 @@
     <servlet-mapping>
         <servlet-name>SquadServlet</servlet-name>
         <url-pattern>/squad</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RankServlet</servlet-name>
+        <url-pattern>/rank</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

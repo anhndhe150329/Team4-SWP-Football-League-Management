@@ -10,28 +10,29 @@ package model;
  * @author ntpho
  */
 public class Rank {
+
     private int clubId;
     private int app;
-    private int W;
-    private int D;
-    private int L;
-    private int GF;
-    private int GA;
-    private int GD;
+    private int w;
+    private int d;
+    private int l;
+    private int gf;
+    private int ga;
+    private int gd;
     private int point;
 
     public Rank() {
     }
 
-    public Rank(int clubId, int app, int W, int D, int L, int GF, int GA, int GD, int point) {
+    public Rank(int clubId, int app, int w, int d, int l, int gf, int ga, int gd, int point) {
         this.clubId = clubId;
         this.app = app;
-        this.W = W;
-        this.D = D;
-        this.L = L;
-        this.GF = GF;
-        this.GA = GA;
-        this.GD = GD;
+        this.w = w;
+        this.d = d;
+        this.l = l;
+        this.gf = gf;
+        this.ga = ga;
+        this.gd = gd;
         this.point = point;
     }
 
@@ -52,51 +53,51 @@ public class Rank {
     }
 
     public int getW() {
-        return W;
+        return w;
     }
 
-    public void setW(int W) {
-        this.W = W;
+    public void setW(int w) {
+        this.w = w;
     }
 
     public int getD() {
-        return D;
+        return d;
     }
 
-    public void setD(int D) {
-        this.D = D;
+    public void setD(int d) {
+        this.d = d;
     }
 
     public int getL() {
-        return L;
+        return l;
     }
 
-    public void setL(int L) {
-        this.L = L;
+    public void setL(int l) {
+        this.l = l;
     }
 
-    public int getGF() {
-        return GF;
+    public int getGd() {
+        return gd;
     }
 
-    public void setGF(int GF) {
-        this.GF = GF;
+    public void setGd(int gd) {
+        this.gd = gd;
     }
 
-    public int getGA() {
-        return GA;
+    public int getGf() {
+        return gf;
     }
 
-    public void setGA(int GA) {
-        this.GA = GA;
+    public void setGf(int gf) {
+        this.gf = gf;
     }
 
-    public int getGD() {
-        return GD;
+    public int getGa() {
+        return ga;
     }
 
-    public void setGD(int GD) {
-        this.GD = GD;
+    public void setGa(int ga) {
+        this.ga = ga;
     }
 
     public int getPoint() {
@@ -106,4 +107,5 @@ public class Rank {
     public void setPoint(int point) {
         this.point = point;
     }
+
 }

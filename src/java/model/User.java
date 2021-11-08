@@ -20,6 +20,16 @@ public class User {
     public User() {
     }
 
+    public User(String username, String password, String name, boolean gender, Date dob, String email, int type) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.gender = gender;
+        this.dob = dob;
+        this.email = email;
+        this.type = type;
+    }
+
     public User(int userId, String username, String password, String name, boolean gender, Date dob, int favClub, String email, int type) {
         this.userId = userId;
         this.username = username;

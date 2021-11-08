@@ -385,13 +385,13 @@
                                             <tr>
                                                 <td>${i+1}</td>
                                                 <td>${cd.getClubById(rc.clubId).getClubName()}</td>
-                                                <td>${rc.GD}</td>
+                                                <td>${rc.gd}</td>
                                                 <td>${rc.point}</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
                                 </table>
-                                <a href="#" class="p-all">View All</a>
+                                <a href="rank" class="p-all">View All</a>
                             </div></form>
                     </div>
                     <div class="col-lg-4">
