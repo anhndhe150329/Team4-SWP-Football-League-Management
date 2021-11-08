@@ -145,9 +145,9 @@
                                     <li class="${active=="home"?"active":""}"><a href="home">Home</a></li>
                                     <li class="${active=="club"?"active":""}"><a href="club?op=list">Club</a></li>
                                     <li class="${active=="schedule"?"active":""}"><a href="schedule?op=view">Schedule</a></li>
-                                    <li><a href="player?op=list">Players</a></li>
-                                    <li><a href="rank">Rank</a></li>
-                                    <li><a href="#">Profile</a>
+                                    <li class="${active=="player"?"active":""}"><a href="player?op=list">Players</a></li>
+                                    <li class="${active=="rank"?"active":""}"><a href="rank">Rank</a></li>
+                                    <li class="${active=="profile"?"active":""}"><a href="#">Profile</a>
                                         <ul class="dropdown">
                                             <c:choose>
                                                 <c:when test="${acc==null}">

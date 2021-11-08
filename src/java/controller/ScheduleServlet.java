@@ -8,6 +8,7 @@ package controller;
 import dal.ClubDAO;
 import dal.LeagueDAO;
 import dal.MatchDao;
+import dal.RankDAO;
 import dal.SquadDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -114,8 +115,14 @@ public class ScheduleServlet extends HttpServlet {
                 Match m = md.getMatchById(id);
                 m.setDate(Date.valueOf(request.getParameter("date")));
                 String status = request.getParameter("status");
-                m.setStatus("on".equals(status));
+                 m.setStatus("on".equals(status));
                 md.updateMatch(m);
+                
+                if("on".equals(status)){
+                    RankDAO rd = new RankDAO();
+                    rd.updateClubRank(m.getHome());
+                    rd.updateClubRank(m.getAway());
+                } 
                 request.getRequestDispatcher("schedule?op=view").forward(request, response);
                 break;
             }
