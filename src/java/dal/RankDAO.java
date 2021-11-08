@@ -26,7 +26,7 @@ public class RankDAO extends DBContext {
         List<TopScorer> list = new ArrayList();
 
         String sql = "select  count (*) as goalno, playerName, clubName from goal  join player on player.playerId = goal.scorer\n"
-                + "                                                             join club on player.clubId = club.clubId\n"
+                + "join club on player.clubId = club.clubId\n"
                 + "group by scorer,playerName, clubName\n"
                 + "order by goalno desc";
         try {
@@ -83,6 +83,75 @@ public class RankDAO extends DBContext {
         } catch (Exception e) {
         }
         return null;
+    }
+
+    public int updateAppResult(int clubId, int gd) {
+        String result = "";
+        String condition = "";
+        if (gd > 0) {
+            result = "W";
+            condition = "gf-ga>0";
+        } else if (gd == 0) {
+            result = "D";
+            condition = "gf-ga=0";
+        } else {
+            result = "L";
+            condition = "gf-ga<0";
+        }
+
+        String sql = "update RankTable set " + result + " =(select count (*) from (\n"
+                + "select home,homeScore as gf,awayScore as ga,[status] from [match]\n"
+                + "union all\n"
+                + "select away,awayScore , homeScore,[status] from [match]\n"
+                + ") as x where home=? and [status]=1  and " + condition + " ) where clubId=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, clubId);
+            ps.setInt(2, clubId);
+            return ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+
+    }
+
+    public int updateGDResult(int clubId, boolean type) {
+        String result = type ? "GF" : "GA";
+
+        String sql = "update RankTable set " + result + " = ( select sum(" + result + ") from (\n"
+                + "select home,homeScore as gf,awayScore as ga,[status] from [match]\n"
+                + "union all\n"
+                + "select away,awayScore , homeScore,[status] from [match]\n"
+                + ") as x where home=? and [status]=1 ) where clubId=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, clubId);
+            ps.setInt(2, clubId);
+            return ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public void updateClubRank(int clubId) {
+
+        for (int i = -1; i <= 1; i++) {
+            updateAppResult(clubId, i);
+        }
+        updateGDResult(clubId, true);
+        updateGDResult(clubId, false);
+    }
+    
+    
+    public void updateAll(){
+        List<Rank> list = getAllRank();
+        for(Rank r: list){
+            updateClubRank(r.getClubId());
+        }
     }
 
     public static void main(String[] args) {

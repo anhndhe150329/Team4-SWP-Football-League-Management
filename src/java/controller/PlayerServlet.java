@@ -38,7 +38,7 @@ public class PlayerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        
+        session.setAttribute("active", "player");
         String op = request.getParameter("op");
         PlayerDAO pd = new PlayerDAO();
         if ("list".equals(op)) {

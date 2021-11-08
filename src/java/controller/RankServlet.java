@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Rank;
 
 /**
@@ -35,6 +36,12 @@ public class RankServlet extends HttpServlet {
             throws ServletException, IOException {
         RankDAO rd = new RankDAO();
         ClubDAO cd = new ClubDAO();
+        HttpSession session = request.getSession();
+        session.setAttribute("active", "rank");
+        String op = request.getParameter("op");
+        if("refresh".equals(op)){
+            rd.updateAll();
+        }
         List<Rank> lrank= rd.getAllRank();
         request.setAttribute("lrank", lrank);
         request.setAttribute("cd", cd);

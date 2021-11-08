@@ -136,25 +136,25 @@
     <body>
         <jsp:include page="header.jsp"></jsp:include>
             <div class="main1">
-                <a href="#" style="font-size: 14px;">Refresh</a>
-                <div class="main2 table-responsive">
-                    
-                    <center>
-                        
-                        <h2> PREMIER LEAGUE <img class="flag" src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1561260902/Flag_of_Great_Britain__281707_E2_80_931800_29.svg"></h2>
-                        <p class="pt">POINTS TABLE 2019</p>
-                        <table class="table">
-                            <thead>
-                            <td>Pos.</td>
-                            <td class="name">CLUBS</td>
-                            <td>P</td>
-                            <td>W</td>
-                            <td>D</td>
-                            <td>L</td>
-                            <td>GD</td>
-                            <td>POINTS</td>
-                            </thead>
-                            <tbody>
+            <c:if test="${acc.type==1}">
+                <a href="rank?op=refresh" style="font-size: 14px;">Refresh</a>
+            </c:if>
+            <div class="main2 table-responsive" style="font-size:16px">
+                <center>
+                    <h2> PREMIER LEAGUE <img class="flag" src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1561260902/Flag_of_Great_Britain__281707_E2_80_931800_29.svg"></h2>
+                    <p class="pt">POINTS TABLE 2019</p>
+                    <table class="table">
+                        <thead>
+                        <td>Pos.</td>
+                        <td class="name">CLUBS</td>
+                        <td>P</td>
+                        <td>W</td>
+                        <td>D</td>
+                        <td>L</td>
+                        <td>GD</td>
+                        <td>POINTS</td>
+                        </thead>
+                        <tbody>
                             <c:forEach begin="0" end="${lrank.size()-1}" var="i" step="1">
                                 <c:set value="${lrank.get(i)}" var="lr"/>
                                 <c:if test="${i<4}"><c:set var="t" value="top"/></c:if>
