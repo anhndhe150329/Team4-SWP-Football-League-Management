@@ -198,10 +198,30 @@ public class UserDAO extends DBContext {
             System.out.println(e);
         }
     }
+    
+    
+    public void updateUser(User u){
+       String sql = "update [user] set name =?, gender = ?, dob=?,email=? where userId =? ";
+        try {
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            
+            ps.setString(1, u.getName());
+            ps.setBoolean(2, u.isGender());
+            ps.setDate(3, u.getDob());
+            ps.setString(4, u.getEmail());
+            ps.setInt(5, u.getUserId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
 
     public static void main(String[] args) {
-        User u = new User("123a","123","123",true,Date.valueOf("2002-09-15"),"",3);
+        
         UserDAO ud = new UserDAO();
-        System.out.println(ud.signup(u));
+        User u = new User(2, "Manchester United Manager1", true, Date.valueOf("2021-08-11"), "manutd1@gmail.com");
+        ud.updateUser(u);
+        
     }
 }
