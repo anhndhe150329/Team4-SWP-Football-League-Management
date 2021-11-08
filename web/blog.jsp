@@ -90,17 +90,18 @@
                                         <ul>
 
                                             <li><i class="fa fa-calendar"></i> ${c.date}</li>
-                                           
-                                            <a href="like?action=likef&pid=${c.id_post}" style="text-decoration: none; margin-right: 10px">
-                                                <span style="font-size:20px">&#128077;</span>
-                                            </a>
-                                            
-                                            
-                                                <a href="like?action=dislike&pid=${c.id_post}">
-                                                   <i class="fa fa-thumbs-down"></i>
+                                                <c:if test="${acc.type!=null}">
+
+                                                <a href="like?action=likef&pid=${c.id_post}" style="text-decoration: none; margin-right: 10px">
+                                                    <span style="font-size:20px">&#128077;</span>
                                                 </a>
-                                               
-                                                <c:if test="${acc.type==1}">
+
+                                                <a href="like?action=dislike&pid=${c.id_post}">
+                                                    <i class="fa fa-thumbs-down"></i>
+                                                </a>
+                                            </c:if>
+
+                                            <c:if test="${acc.type==1}">
                                                 <li  style="color:blue"> <a href="blog?action=delete&pid=${c.id_post}">Delete</a></li>
                                                 </c:if>
                                             <li><i class="fa fa-edit"></i> 3 Comment</li>
@@ -125,7 +126,7 @@
                                 <ul>
                                     <li><a href="#">Fool Ball</a></li>
                                     <li><a href="#">Soccer</a></li>
-                                    
+
                                 </ul>
                             </div>
                             <div class="follow-links">

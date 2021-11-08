@@ -10,27 +10,25 @@ package model;
  * @author admin
  */
 public class TopScorer {
-    private int scorer;
+    private int goalno;
     private String playerName;
-    private int pos;
-    private String  country;
+   private String  clubName;
 
     public TopScorer() {
     }
 
-    public TopScorer(int scorer, String playerName, int pos, String country) {
-        this.scorer = scorer;
+    public TopScorer(int goalno, String playerName, String clubName) {
+        this.goalno = goalno;
         this.playerName = playerName;
-        this.pos = pos;
-        this.country = country;
+        this.clubName = clubName;
     }
 
-    public int getScorer() {
-        return scorer;
+    public int getGoalno() {
+        return goalno;
     }
 
-    public void setScorer(int scorer) {
-        this.scorer = scorer;
+    public void setGoalno(int goalno) {
+        this.goalno = goalno;
     }
 
     public String getPlayerName() {
@@ -41,26 +39,19 @@ public class TopScorer {
         this.playerName = playerName;
     }
 
-    public int getPos() {
-        return pos;
+    public String getClubName() {
+        return clubName;
     }
 
-    public void setPos(int pos) {
-        this.pos = pos;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
+    public void setClubName(String clubName) {
+        this.clubName = clubName;
     }
 
     @Override
     public String toString() {
-        return "TopScorer{" + "scorer=" + scorer + ", playerName=" + playerName + ", pos=" + pos + ", country=" + country + '}';
+        return "TopScorer{" + "goalno=" + goalno + ", playerName=" + playerName + ", clubName=" + clubName + '}';
     }
     
     
+
 }

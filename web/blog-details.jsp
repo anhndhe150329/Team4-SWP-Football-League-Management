@@ -91,63 +91,35 @@
                                 <a href="#">Ideas</a>
                             </div>
                             <div class="comment-option">
-                                <h4>2 Comments</h4>
-                                <div class="single-comment-item first-comment">
-                                    <div class="sc-author">
-                                        <img src="img/blog/details/comment/comment-1.jpg" alt="">
-                                    </div>
-                                    <div class="sc-text">
-                                        <span>${list.date}</span>
-                                        <h5>Brandon Kelley</h5>
-                                        <p>Vasse Felix chief executive, Paul Holmes a Court said no plans have yet been made
-                                            for the buildings on the property.</p>
-                                        <a href="#" class="comment-btn like-btn">Like</a>
-                                        <a href="#" class="comment-btn">Reply</a>
-                                    </div>
-                                </div>
-                                <div class="single-comment-item reply-comment">
-                                    <div class="sc-author">
-                                        <img src="img/blog/details/comment/comment-2.jpg" alt="">
-                                    </div>
-                                    <div class="sc-text">
-                                        <span>${list.date}</span>
-                                        <h5>Brandon Kelley</h5>
-                                        <p>Vasse Felix chief executive, Paul Holmes a Court said no plans have yet been made
-                                            for the buildings on the property.</p>
-                                        <a href="#" class="comment-btn like-btn">Like</a>
-                                        <a href="#" class="comment-btn">Reply</a>
-                                    </div>
-                                </div>
+                                <h4>Comments</h4>
+                                <c:forEach items="${comments}" var="com">
                                 <div class="single-comment-item second-comment ">
                                     <div class="sc-author">
                                         <img src="img/blog/details/comment/comment-3.jpg" alt="">
                                     </div>
                                     <div class="sc-text">
-                                        <span>27 Aug 2019</span>
-                                        <h5>Brandon Kelley</h5>
-                                        <p>Vasse Felix chief executive, Paul Holmes a Court said no plans have yet been made
-                                            for the buildings on the property.</p>
+                                        <span>${com.date}</span>
+                                        <h5>${com.username}</h5>
+                                        <p>${com.content}</p>
                                         <a href="#" class="comment-btn like-btn">Like</a>
                                         <a href="#" class="comment-btn">Reply</a>
                                     </div>
                                 </div>
+                                </c:forEach>
                             </div>
                             <c:if test="${acc.type!=1}">
                                 <div class="comment-form">
-                                    <h4>Leave A Comment</h4>
-                                    <form action="#">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <input type="text" placeholder="Name">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <input type="text" placeholder="Email">
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <textarea placeholder="Comment"></textarea>
-                                                <button type="submit">Post Comment</button>
-                                            </div>
+                                   <h4>Leave A Comment</h4>
+                                    <form action="blog?action=insertcomment&id1=${blogpost_id}" method="Post">
+                                       <div class="row">
+
+                                        <div class="col-lg-12">
+                                            
+                                            <input  name="content1">
+                                    
+                                            <button type="submit">Post Comment</button>
                                         </div>
+                                    </div>
                                     </form>
                                 </div>
                             </c:if>

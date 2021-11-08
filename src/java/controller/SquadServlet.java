@@ -81,7 +81,7 @@ public class SquadServlet extends HttpServlet {
                     boolean isHome = Boolean.valueOf(sisHome);
                     SquadInfo si = new SquadInfo(pId, sId, posNo);
                     sd.addSquadInfo(si);
-                    request.getRequestDispatcher("match?op=edit&mId="+matchId+"&isHome="+isHome).forward(request, response);
+                    request.getRequestDispatcher("squad?op=edit&matchId="+matchId+"&isHome="+isHome).forward(request, response);
                     break;
                 }
             case "delete":
@@ -91,7 +91,7 @@ public class SquadServlet extends HttpServlet {
                     int matchId = Integer.parseInt(smid);
                     boolean isHome = Boolean.valueOf(sisHome);
                     sd.deleteSquadInfo(sd.getOneSquadInfo(sId, posNo).getSquadInfoId());
-                    request.getRequestDispatcher("match?op=edit&mId="+matchId+"&isHome="+isHome).forward(request, response);
+                    request.getRequestDispatcher("squad?op=edit&matchId="+matchId+"&isHome="+isHome).forward(request, response);
                     break;
                 }
             case "change":
@@ -119,7 +119,7 @@ public class SquadServlet extends HttpServlet {
                     boolean isHome = Boolean.valueOf(sisHome);
                     SquadInfo si = new SquadInfo(pId, sId, posNo);
                     sd.UpdateSquadInfo(si);
-                    request.getRequestDispatcher("match?op=edit&mId="+matchId+"&isHome="+isHome).forward(request, response);
+                    request.getRequestDispatcher("squad?op=edit&matchId="+matchId+"&isHome="+isHome).forward(request, response);
                     break;
                 }
             default:
