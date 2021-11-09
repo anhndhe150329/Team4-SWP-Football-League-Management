@@ -80,7 +80,7 @@ public class RegisterAccountServlet extends HttpServlet {
         String repassword = request.getParameter("repassword");
         String name = request.getParameter("name");
         String gender = request.getParameter("gender");
-        boolean g = gender.equals("1");
+        boolean g = gender.equals("1");      
         Date dob = null;
         try {
             dob = new java.sql.Date((new SimpleDateFormat("yyyy-dd-MM").parse(request.getParameter("dob"))).getTime());

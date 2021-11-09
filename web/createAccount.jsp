@@ -148,8 +148,8 @@
                 <div class="form-group row">
                     <label class="col-form-label col-4">Gender</label>
                     <div class="col-8" >
-                        <input type="checkbox" name="gender" checked >Male<br>
-                    <input type="checkbox"  name="gender">Female
+                        <input type="radio" name="gender" checked >Male<br>
+                    <input type="radio"  name="gender">Female
 
                     </div>        	
                 </div>

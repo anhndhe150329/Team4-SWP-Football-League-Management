@@ -29,14 +29,16 @@ public class FavouriteDAO extends DBContext {
         return 0;
 
     }
-    public int dislikeFavourite(int pid) {
+    public int dislikeFavourite(int pid,int uid) {
         
-        String sql = "delete from favourite where pid=?";
+        String sql = "delete from favourite where pid=? and uid=?";
        
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             
             st.setInt(1, pid);
+            st.setInt(2, uid);
+
             st.executeUpdate();
             return 1;
             
