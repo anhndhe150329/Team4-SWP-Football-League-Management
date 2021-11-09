@@ -125,7 +125,7 @@ public class UserDAO extends DBContext {
     }
 
     public User findByUsername(String name, String email) {
-        String sql = "select*from [user] where name=? and email=? ";
+        String sql = "select*from [user] where username=? and email=? ";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, name);

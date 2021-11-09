@@ -56,13 +56,16 @@ public class FavouriteController extends HttpServlet {
                 User a = (User) session.getAttribute("acc");
                 int u = a.getUserId();
                 f.like(u, pid);
-                request.setAttribute("change",  f.like(u, pid));
+//                request.setAttribute("change",  f.like(u, pid));
               request.getRequestDispatcher("blog?action=list").forward(request, response);
                 break;
             case "dislike":
                  FavouriteDAO f1 = new FavouriteDAO();
                 int pid1 = Integer.parseInt(request.getParameter("pid"));
-               int r1= f1.dislikeFavourite(pid1);
+                 HttpSession session1 = request.getSession();
+                User a1 = (User) session1.getAttribute("acc");
+                int u1 = a1.getUserId();
+               int r1= f1.dislikeFavourite(pid1,u1);
                 request.setAttribute("change1", r1);
                   response.sendRedirect("blog?action=list");
 
