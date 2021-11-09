@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Blog;
+import model.Favourite;
 import model.Video;
 
 /**
@@ -137,12 +138,38 @@ public class BlogDAO extends DBContext {
             System.out.println(e);
         }
     }
+    public List<Blog> listFav(int idu) {
+        String sql = "select b.id_post, b.title,b.idu,b.content,b.[image],b.date \n" +
+"from blog as b inner join favourite \n" +
+"on b.id_post=favourite .pid where uid=?";
+        List<Blog> list = new ArrayList<>();
+       
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, idu);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+               
+                Blog b = new Blog( rs.getInt(1), rs.getString(2), rs.getInt(3),
+                        rs.getString(4), rs.getString(5), rs.getDate(6));
+               
+                list.add(b);
+              
+                
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
 
+    }
     
     public static void main(String[] args) {
 
        BlogDAO b= new BlogDAO();
-       b.updateBlog("duc", "123", "", 14);
+       List<Blog> list=b.listFav(20);
+        System.out.println(list);
 
     }
 }

@@ -1,13 +1,16 @@
 package controller;
 
+import dal.BlogDAO;
 import dal.FavouriteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Blog;
 import model.User;
 
 /**
@@ -71,6 +74,16 @@ public class FavouriteController extends HttpServlet {
 
 
                 break;
+                case  "listFav":
+                   BlogDAO b= new BlogDAO();
+                  
+                   HttpSession session3 = request.getSession();
+                    User a2 = (User) session3.getAttribute("acc");
+                     int u3 = a2.getUserId();
+                   
+                    List<Blog>list= b.listFav(u3);
+                     request.setAttribute("list", list);
+                     request.getRequestDispatcher("ListFav.jsp").forward(request, response);
             default:
                 return;
         }
