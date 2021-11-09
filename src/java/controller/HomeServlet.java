@@ -45,8 +45,7 @@ public class HomeServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         session.setAttribute("active", "home");
-        List<TopScorer> listTopScorer = new RankDAO().getTopScocer();
-        request.setAttribute("listTopScorer", listTopScorer);
+        
         int id=0;
         if(session.getAttribute("acc")!=null){
             id= ((User) session.getAttribute("acc")).getFavClub();
@@ -54,12 +53,19 @@ public class HomeServlet extends HttpServlet {
         MatchDao md = new MatchDao();
         request.setAttribute("NextMatch", md.getNextMatch(id));
         
+        request.setAttribute("ListNextMatch", md.getListNextMatch(id));
+        
+        request.setAttribute("ListRecentMatch", md.getRecentMatch(id));
+        
         ClubDAO cd = new ClubDAO();
         request.setAttribute("cd", cd);
         
         RankDAO rd = new RankDAO();
+        
+        List<TopScorer> listTopScorer = rd.getTopScocer();
         List<Top> listAs = rd.getTopAssistant();
         List<Rank> listRClub = rd.getAllRank();
+        request.setAttribute("listTopScorer", listTopScorer);
         request.setAttribute("listC", listRClub);
         request.setAttribute("listAs", listAs);
         

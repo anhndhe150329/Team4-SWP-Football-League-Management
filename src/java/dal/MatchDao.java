@@ -93,7 +93,7 @@ public class MatchDao extends DBContext {
         }
         return null;
     }
-
+    
     public Match getNextMatch(int id) {
         String s = "";
         if (id != 0) {
@@ -112,7 +112,49 @@ public class MatchDao extends DBContext {
         }
         return null;
     }
-
+    
+    public List<Match> getListNextMatch(int id) {
+        List<Match> list = new ArrayList<>();
+        String s = "";
+        if (id != 0) {
+            s = "and (home=" + id + " or away=" + id + ")";
+        }
+        String sql = "select top 3 * from [match] where [status]=0 " + s + " order by [date]";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Match m = new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5), rs.getInt(6), rs.getBoolean(7));
+                list.add(m);
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+    public List<Match> getRecentMatch(int id) {
+        List<Match> list = new ArrayList<>();
+        String s = "";
+        if (id != 0) {
+            s = "and (home=" + id + " or away=" + id + ")";
+        }
+        String sql = "select top 3 * from [match] where [status]=1 " + s + " order by [date] desc";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Match m = new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5), rs.getInt(6), rs.getBoolean(7));
+                list.add(m);
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
     public void addMatch(Match m) {
         String sql = "insert into [match](home,away,date,status) values(?,?,?,?)";
         try {
