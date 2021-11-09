@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>List Player</title>
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/style2.css" rel="stylesheet">
         <link href="css/colors.css" rel="stylesheet">

@@ -14,7 +14,7 @@
     <meta name="keywords" content="Specer, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Specer | Template</title>
+    <title>Contact</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
@@ -33,11 +33,7 @@
     <!-- Header End -->
 
     <!-- Map Section Begin -->
-    <div class="map">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.271618925628!2d-73.6794031851738!3d41.019313126695636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c29772c9aecd8b%3A0x7bb929f83bd76a38!2sBetsy%20Brown%20Rd%2C%20Rye%2C%20NY%2010573%2C%20USA!5e0!3m2!1sen!2sbd!4v1580843692833!5m2!1sen!2sbd"
-            height="500" style="border:0;" allowfullscreen=""></iframe>
-    </div>
+    <div style="width: 100%"><iframe width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=500&amp;hl=en&amp;q=FPT%20University,%20%C4%90CT08,%20Th%E1%BA%A1ch%20Th%E1%BA%A5t,%20H%C3%A0%20N%E1%BB%99i+(FLM%20Team)&amp;t=k&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div>
     <!-- Map Section End -->
 
     <!-- Contact Section Begin -->
@@ -71,19 +67,19 @@
                             page when looking at its layout. The point of using Lorem Ipsum is that it has a
                             distribution of letters.</p>
                         <div class="ci-address">
-                            <h5>New York Office</h5>
+                            <h5>Hola Office</h5>
                             <ul>
-                                <li>T8/480 Collins St, Melbourne VIC 3000, New York</li>
-                                <li>1-234-567-89011</li>
-                                <li>info.colorlib@gmail.com </li>
+                                <li>Hoa Lac Hi-tech Park, Thach That, Hanoi, Vietnam</li>
+                                <li>+(12) 345 6789 10</li>
+                                <li>FPT@fpt.edu.vn </li>
                             </ul>
                         </div>
                         <div class="ci-address">
-                            <h5>Australia Office</h5>
+                            <h5>Long Bien Office</h5>
                             <ul>
-                                <li>Forrest Ray, 191-103 Integer Rd, Corona Australia</li>
-                                <li>1-234-567-89011</li>
-                                <li>info.colorlib@gmail.com </li>
+                                <li>Long Bien, Hanoi, Vietnam</li>
+                                <li>+(12) 345 6789 10</li>
+                                <li>FPT@fpt.edu.vn</li>
                             </ul>
                         </div>
                     </div>
