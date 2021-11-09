@@ -12,6 +12,7 @@ import dal.PlayerDAO;
 import dal.RankDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Club;
+import model.Match;
 import model.Rank;
 import model.Top;
 import model.TopScorer;
@@ -51,11 +53,36 @@ public class HomeServlet extends HttpServlet {
             id= ((User) session.getAttribute("acc")).getFavClub();
         }
         MatchDao md = new MatchDao();
-        request.setAttribute("NextMatch", md.getNextMatch(id));
+        Match m = new Match();
+        try{
+            m=md.getListNextMatch(id,false).get(0);
+        }catch(Exception e){
+            
+        }
+        request.setAttribute("NextMatch",m);
         
-        request.setAttribute("ListNextMatch", md.getListNextMatch(id));
+        List<Match> nextMatchs = new ArrayList<>();
+        int count=0;
+        for(Match match : md.getListNextMatch(id,false)){
+            nextMatchs.add(match);
+            count++;
+            if(count==3){
+                break;
+            }
+        }
+        request.setAttribute("ListNextMatch", nextMatchs);
         
-        request.setAttribute("ListRecentMatch", md.getRecentMatch(id));
+        List<Match> recentMatchs = new ArrayList<>();
+        count=0;
+        for(Match match : md.getListNextMatch(id,true)){
+            recentMatchs.add(match);
+            count++;
+            if(count==3){
+                break;
+            }
+        }
+        
+        request.setAttribute("ListRecentMatch", recentMatchs);
         
         ClubDAO cd = new ClubDAO();
         request.setAttribute("cd", cd);

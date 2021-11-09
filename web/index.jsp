@@ -78,60 +78,66 @@
                     <div class="col-lg-6">
                         <div class="ms-content">
                             <h4>Next Match</h4>
-                            <c:forEach items="${ListNextMatch}" var="m" >
-                                <c:set var="home" value="${cd.getClubById(m.home)}" />
-                                <c:set var="away" value="${cd.getClubById(m.away)}" />
-                                <div class="mc-table">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="left-team">
-                                                    <img src="img/logo/${home.image}" alt="">
-                                                    <h6>${home.clubName}</h6>
-                                                </td>
-                                                <td class="mt-content">
-                                                    <div class="mc-op">${home.stadium}</div>
-                                                    <h4>VS</h4>
-                                                    <div class="mc-op">${m.date}</div>
-                                                </td>
-                                                <td class="right-team">
-                                                    <img src="img/logo/${away.image}" alt="">
-                                                    <h6>${away.clubName}</h6>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <c:forEach begin="0" end="2" var="i" step="1" >
+                                <c:if test="${i<ListNextMatch.size()}">
+                                    <c:set var="m" value="${ListNextMatch.get(i)}" />
+                                    <c:set var="home" value="${cd.getClubById(m.home)}" />
+                                    <c:set var="away" value="${cd.getClubById(m.away)}" />
+                                    <div class="mc-table">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="left-team">
+                                                        <img src="img/logo/${home.image}" alt="">
+                                                        <h6>${home.clubName}</h6>
+                                                    </td>
+                                                    <td class="mt-content">
+                                                        <div class="mc-op">${home.stadium}</div>
+                                                        <h4>VS</h4>
+                                                        <div class="mc-op">${m.date}</div>
+                                                    </td>
+                                                    <td class="right-team">
+                                                        <img src="img/logo/${away.image}" alt="">
+                                                        <h6>${away.clubName}</h6>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </c:if>
                             </c:forEach>  
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="ms-content">
                             <h4>Recent Results</h4>
-                            <c:forEach items="${ListRecentMatch}" var="m" >
-                                <c:set var="home" value="${cd.getClubById(m.home)}" />
-                                <c:set var="away" value="${cd.getClubById(m.away)}" />
-                                <div class="mc-table">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="left-team">
-                                                    <img src="img/logo/${home.image}" alt="">
-                                                    <h6>${home.clubName}</h6>
-                                                </td>
-                                                <td class="mt-content">
-                                                    <div class="mc-op">${home.stadium}</div>
-                                                    <h4>${m.homeScore} : ${m.awayScore}</h4>
-                                                    <div class="mc-op">${m.date}</div>
-                                                </td>
-                                                <td class="right-team">
-                                                    <img src="img/logo/${away.image}" alt="">
-                                                    <h6>${away.clubName}</h6>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <c:forEach begin="0" end="2" var="i" step="1" >
+                                <c:if test="${i<ListRecentMatch.size()}">
+                                    <c:set var="m" value="${ListRecentMatch.get(i)}" />
+                                    <c:set var="home" value="${cd.getClubById(m.home)}" />
+                                    <c:set var="away" value="${cd.getClubById(m.away)}" />
+                                    <div class="mc-table">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="left-team">
+                                                        <img src="img/logo/${home.image}" alt="">
+                                                        <h6>${home.clubName}</h6>
+                                                    </td>
+                                                    <td class="mt-content">
+                                                        <div class="mc-op">${home.stadium}</div>
+                                                        <h4>${m.homeScore} : ${m.awayScore}</h4>
+                                                        <div class="mc-op">${m.date}</div>
+                                                    </td>
+                                                    <td class="right-team">
+                                                        <img src="img/logo/${away.image}" alt="">
+                                                        <h6>${away.clubName}</h6>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </c:if>
                             </c:forEach>  
                         </div>
                     </div>
