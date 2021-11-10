@@ -24,12 +24,11 @@ public class MatchDao extends DBContext {
 
     public List<Match> getAllMatchById(int id) {
         List<Match> list = new ArrayList();
-        String sql = "select matchId, home, away, [date], homeScore, awayScore, [status]\n"
-                + "from [match] as m join [club] as c on (m.home = c.clubId) or(m.away = c.clubId) where c.clubId=? \n"
-                + "order by [date] ";
+        String sql = "select * from match where home =? or away =? order by [date]";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
+            ps.setInt(2, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Match m = new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5), rs.getInt(6), rs.getBoolean(7));
@@ -94,26 +93,34 @@ public class MatchDao extends DBContext {
         }
         return null;
     }
-
-    public Match getNextMatch(int id) {
+    
+    
+    
+    public List<Match> getListNextMatch(int id,boolean status) {
+        List<Match> list = new ArrayList<>();
         String s = "";
         if (id != 0) {
             s = "and (home=" + id + " or away=" + id + ")";
         }
-        String sql = "select top 1 * from [match] where [status]=0 " + s + " order by [date]";
+        String order =status ? "desc":"asc";
+        String sql = "select * from [match] where [status]=? " + s + " order by [date] "+order;
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setBoolean(1, status);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Match m = new Match(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5), rs.getInt(6), rs.getBoolean(7));
-                return m;
+                list.add(m);
             }
+            return list;
         } catch (SQLException e) {
             System.out.println(e);
         }
         return null;
     }
-
+    
+    
+    
     public void addMatch(Match m) {
         String sql = "insert into [match](home,away,date,status) values(?,?,?,?)";
         try {
@@ -318,7 +325,10 @@ public class MatchDao extends DBContext {
 
     public static void main(String[] args) {
         MatchDao md = new MatchDao();
-        System.out.println(md.updateMatchResult(2));;
+        for(Match m : md.getListNextMatch(0, true)){
+            System.out.println(m.getMatchId());
+        }
+        
     }
 
 }

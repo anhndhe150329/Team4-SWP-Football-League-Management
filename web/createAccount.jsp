@@ -12,7 +12,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
-        <title>Bootstrap Sign up Form Horizontal</title>
+        <title>Sign up</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -148,8 +148,8 @@
                 <div class="form-group row">
                     <label class="col-form-label col-4">Gender</label>
                     <div class="col-8" >
-                        <input type="checkbox" name="gender" checked >Male<br>
-                    <input type="checkbox"  name="gender">Female
+                        <input type="radio" name="gender" checked >Male<br>
+                    <input type="radio"  name="gender">Female
 
                     </div>        	
                 </div>

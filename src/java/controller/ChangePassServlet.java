@@ -78,28 +78,29 @@ public class ChangePassServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         int id1 = Integer.parseInt(request.getParameter("userId"));
-        
+        HttpSession session = request.getSession();
+        User a = (User) session.getAttribute("acc");
+        UserDAO ud = new UserDAO();
+        int id = a.getUserId();
 
+        String oldpassword = request.getParameter("oldpass");
         String password = request.getParameter("pass");
         String newpass = request.getParameter("pass1");
 
-//      PrintWriter out = response.getWriter();
-//            out.print(userId+" " + password+" "+ newpass);
-        UserDAO a = new UserDAO();
-
-        // if(a != null){
-        if (newpass.equals(password)) {
-            request.setAttribute("mess1", "Changepass Done!");
-            a.changePass(password,id1 );
-            request.getRequestDispatcher("login").forward(request, response);
-
-        } else {
-            request.setAttribute("mess", "CHECK YOUR COMFIRM PASSWORD!!!");
+        if (ud.getById(id).getPassword().equals(oldpassword)) {
+            if (newpass.equals(password)) {
+                request.setAttribute("mess1", "Changepass Done!");
+                ud.changePass(password, id);
+                request.getRequestDispatcher("login").forward(request, response);
+            } else {
+                request.setAttribute("mess", "CHECK YOUR COMFIRM PASSWORD!!!");
+            }
+        }else{
+            request.setAttribute("mess", "CHECK YOUR OLD PASSWORD!!!");
         }
+
         request.getRequestDispatcher("changePass.jsp").forward(request, response);
 
-        // }
     }
 
     /**

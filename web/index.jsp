@@ -15,7 +15,7 @@
         <meta name="keywords" content="Specer, unica, creative, html">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Specer | Template</title>
+        <title>FLM Home Page</title>
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
@@ -45,325 +45,175 @@
                                             <div class="hs-text">
                                             <c:set var="home" value="${cd.getClubById(NextMatch.home)}" />
                                             <c:set var="away" value="${cd.getClubById(NextMatch.away)}" />
-                                                <h4>${NextMatch.date} / 9:00 GMT+0000</h4>
-                                               <h2>${home.clubName}  VS ${away.clubName} in ${home.stadium} </h2>
-                                                <a href="match?op=view&matchId=${NextMatch.matchId}" class="primary-btn">More Details</a>
-                                            </div>
+                                            <h4>${NextMatch.date} / 9:00 GMT+0000</h4>
+                                            <h2>${home.clubName}  VS ${away.clubName} in ${home.stadium} </h2>
+                                            <a href="match?op=view&matchId=${NextMatch.matchId}" class="primary-btn">More Details</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Hero Section End -->
-
-            <!-- Trending News Section Begin -->
-            <div class="trending-news-section">
-                <div class="container">
-                    <div class="tn-title"><i class="fa fa-caret-right"></i> Trending News</div>
-                    <div class="news-slider owl-carousel">
-                        <div class="nt-item">Vinyl Banners With Its Different Types Kinds And Applications</div>
-                        <div class="nt-item">Banners With Its Different Types Kinds And Applications</div>
                     </div>
                 </div>
             </div>
-            <!-- Trending News Section End -->
+        </section>
+        <!-- Hero Section End -->
 
-            <!-- Match Section Begin -->
-            <section class="match-section set-bg" data-setbg="img/match/match-bg.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="ms-content">
-                                <h4>Next Match</h4>
-                                <div class="mc-table">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="left-team">
-                                                    <img src="img/match/tf-1.jpg" alt="">
-                                                    <h6>Cambodia</h6>
-                                                </td>
-                                                <td class="mt-content">
-                                                    <div class="mc-op">Ucraina vs England</div>
-                                                    <h4>VS</h4>
-                                                    <div class="mc-op">15 September 2021</div>
-                                                </td>
-                                                <td class="right-team">
-                                                    <img src="img/match/tf-2.jpg" alt="">
-                                                    <h6>Qatar</h6>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="mc-table">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="left-team">
-                                                    <img src="img/match/tf-3.jpg" alt="">
-                                                    <h6>Australia</h6>
-                                                </td>
-                                                <td class="mt-content">
-                                                    <div class="mc-op">Ucraina vs England</div>
-                                                    <h4>VS</h4>
-                                                    <div class="mc-op">15 September 2021</div>
-                                                </td>
-                                                <td class="right-team">
-                                                    <img src="img/match/tf-4.jpg" alt="">
-                                                    <h6>Iraq</h6>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="mc-table">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="left-team">
-                                                    <img src="img/match/tf-5.jpg" alt="">
-                                                    <h6>Ucraina</h6>
-                                                </td>
-                                                <td class="mt-content">
-                                                    <div class="mc-op">Ucraina vs England</div>
-                                                    <h4>VS</h4>
-                                                    <div class="mc-op">15 September 2021</div>
-                                                </td>
-                                                <td class="right-team">
-                                                    <img src="img/match/tf-6.jpg" alt="">
-                                                    <h6>Jordan</h6>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+        <!-- Trending News Section Begin -->
+        <div class="trending-news-section">
+            <div class="container">
+                <div class="tn-title"><i class="fa fa-caret-right"></i> Trending News</div>
+                <div class="news-slider owl-carousel">
+                    <div class="nt-item">Vinyl Banners With Its Different Types Kinds And Applications</div>
+                    <div class="nt-item">Banners With Its Different Types Kinds And Applications</div>
+                </div>
+            </div>
+        </div>
+        <!-- Trending News Section End -->
+
+        <!-- Match Section Begin -->
+        <section class="match-section set-bg" data-setbg="img/match/match-bg.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="ms-content">
+                            <h4>Next Match</h4>
+                            <c:forEach begin="0" end="2" var="i" step="1" >
+                                <c:if test="${i<ListNextMatch.size()}">
+                                    <c:set var="m" value="${ListNextMatch.get(i)}" />
+                                    <c:set var="home" value="${cd.getClubById(m.home)}" />
+                                    <c:set var="away" value="${cd.getClubById(m.away)}" />
+                                    <div class="mc-table">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="left-team">
+                                                        <img src="img/logo/${home.image}" alt="">
+                                                        <h6>${home.clubName}</h6>
+                                                    </td>
+                                                    <td class="mt-content">
+                                                        <div class="mc-op">${home.stadium}</div>
+                                                        <h4>VS</h4>
+                                                        <div class="mc-op">${m.date}</div>
+                                                    </td>
+                                                    <td class="right-team">
+                                                        <img src="img/logo/${away.image}" alt="">
+                                                        <h6>${away.clubName}</h6>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </c:if>
+                            </c:forEach>  
                         </div>
-                        <div class="col-lg-6">
-                            <div class="ms-content">
-                                <h4>Recent Results</h4>
-                                <div class="mc-table">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="left-team">
-                                                    <img src="img/match/tf-1.jpg" alt="">
-                                                    <h6>Darussalam</h6>
-                                                </td>
-                                                <td class="mt-content">
-                                                    <div class="mc-op">Ucraina vs England</div>
-                                                    <h4>1 : 2</h4>
-                                                    <div class="mc-op">15 September 2021</div>
-                                                </td>
-                                                <td class="right-team">
-                                                    <img src="img/match/tf-2.jpg" alt="">
-                                                    <h6>Ucraina</h6>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="mc-table">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="left-team">
-                                                    <img src="img/match/tf-3.jpg" alt="">
-                                                    <h6>Japan</h6>
-                                                </td>
-                                                <td class="mt-content">
-                                                    <div class="mc-op">Ucraina vs England</div>
-                                                    <h4>1 : 2</h4>
-                                                    <div class="mc-op">15 September 2021</div>
-                                                </td>
-                                                <td class="right-team">
-                                                    <img src="img/match/tf-4.jpg" alt="">
-                                                    <h6>Philippines</h6>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="mc-table">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="left-team">
-                                                    <img src="img/match/tf-5.jpg" alt="">
-                                                    <h6>Kyrgyz</h6>
-                                                </td>
-                                                <td class="mt-content">
-                                                    <div class="mc-op">Ucraina vs England</div>
-                                                    <h4>1 : 2</h4>
-                                                    <div class="mc-op">15 September 2021</div>
-                                                </td>
-                                                <td class="right-team">
-                                                    <img src="img/match/tf-6.jpg" alt="">
-                                                    <h6 class="mi-right">Pakistan</h6>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ms-content">
+                            <h4>Recent Results</h4>
+                            <c:forEach begin="0" end="2" var="i" step="1" >
+                                <c:if test="${i<ListRecentMatch.size()}">
+                                    <c:set var="m" value="${ListRecentMatch.get(i)}" />
+                                    <c:set var="home" value="${cd.getClubById(m.home)}" />
+                                    <c:set var="away" value="${cd.getClubById(m.away)}" />
+                                    <div class="mc-table">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="left-team">
+                                                        <img src="img/logo/${home.image}" alt="">
+                                                        <h6>${home.clubName}</h6>
+                                                    </td>
+                                                    <td class="mt-content">
+                                                        <div class="mc-op">${home.stadium}</div>
+                                                        <h4>${m.homeScore} : ${m.awayScore}</h4>
+                                                        <div class="mc-op">${m.date}</div>
+                                                    </td>
+                                                    <td class="right-team">
+                                                        <img src="img/logo/${away.image}" alt="">
+                                                        <h6>${away.clubName}</h6>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </c:if>
+                            </c:forEach>  
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- Match Section End -->
+            </div>
+        </section>
+        <!-- Match Section End -->
 
-            <!-- Soccer Section Begin -->
-            <section class="soccer-section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 p-0">
-                            <div class="section-title">
-                                <h3>Soccer <span>Feed</span></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6 p-0">
-                            <div class="soccer-item set-bg" data-setbg="img/soccer/soccer-1.jpg">
-                                <div class="si-tag">Soccer</div>
-                                <div class="si-text">
-                                    <h5><a href="#">Counting Your Chicken Before They Hatch</a></h5>
-                                    <ul>
-                                        <li><i class="fa fa-calendar"></i> May 19, 2021</li>
-                                        <li><i class="fa fa-edit"></i> 3 Comment</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 p-0">
-                            <div class="soccer-item set-bg" data-setbg="img/soccer/soccer-2.jpg">
-                                <div class="si-tag">Soccer</div>
-                                <div class="si-text">
-                                    <h5><a href="#">Hypnotherapy For Motivation Getting The Drive Back</a></h5>
-                                    <ul>
-                                        <li><i class="fa fa-calendar"></i> May 19, 2021</li>
-                                        <li><i class="fa fa-edit"></i> 3 Comment</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 p-0">
-                            <div class="soccer-item set-bg" data-setbg="img/soccer/soccer-3.jpg">
-                                <div class="si-tag">Soccer</div>
-                                <div class="si-text">
-                                    <h5><a href="#">Astronomy Binoculars A Great Alternative</a></h5>
-                                    <ul>
-                                        <li><i class="fa fa-calendar"></i> May 19, 2021</li>
-                                        <li><i class="fa fa-edit"></i> 3 Comment</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 p-0">
-                            <div class="soccer-item set-bg" data-setbg="img/soccer/soccer-4.jpg">
-                                <div class="si-tag">Soccer</div>
-                                <div class="si-text">
-                                    <h5><a href="#">Decorate For Less With Art Posters</a></h5>
-                                    <ul>
-                                        <li><i class="fa fa-calendar"></i> May 19, 2021</li>
-                                        <li><i class="fa fa-edit"></i> 3 Comment</li>
-                                    </ul>
-                                </div>
-                            </div>
+        <!-- Soccer Section Begin -->
+        <section class="soccer-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 p-0">
+                        <div class="section-title">
+                            <h3>Soccer <span>Feed</span></h3>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- Soccer Section End -->
-
-            <!-- Latest Section Begin -->
-            <section class="latest-section">
-                <div class="container">
-                    <div class="row">
-                    <%--    <div class="col-lg-8">
-                            <div class="section-title latest-title">
-                                <h3>Latest <span>News</span></h3>
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 p-0">
+                        <div class="soccer-item set-bg" data-setbg="img/soccer/soccer-1.jpg">
+                            <div class="si-tag">Soccer</div>
+                            <div class="si-text">
+                                <h5><a href="#">Counting Your Chicken Before They Hatch</a></h5>
                                 <ul>
-                                    <li>All</li>
-                                    <li>World Cup</li>
-                                    <li>Champions</li>
-                                    <li>MLS</li>
+                                    <li><i class="fa fa-calendar"></i> May 19, 2021</li>
+                                    <li><i class="fa fa-edit"></i> 3 Comment</li>
                                 </ul>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="news-item left-news">
-                                        <div class="ni-pic set-bg" data-setbg="img/news/latest-b.jpg">
-                                            <div class="ni-tag">Soccer</div>
-                                        </div>
-                                        <div class="ni-text">
-                                            <h4><a href="#">Once You Learn These Hard Truths About Life, You'll Become</a></h4>
-                                            <ul>
-                                                <li><i class="fa fa-calendar"></i> May 19, 2021</li>
-                                                <li><i class="fa fa-edit"></i> 3 Comment</li>
-                                            </ul>
-                                            <p>It’s that time again when people start thinking about their New Years
-                                                Resolutions. Usually they involve, losing weight, quitting smoking, and joining
-                                                a gym, just to mention a few.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="news-item">
-                                        <div class="ni-pic">
-                                            <img src="img/news/ln-1.jpg" alt="">
-                                        </div>
-                                        <div class="ni-text">
-                                            <h5><a href="#">How To Quit Smoking Using Zyban</a></h5>
-                                            <ul>
-                                                <li><i class="fa fa-calendar"></i> May 19, 2021</li>
-                                                <li><i class="fa fa-edit"></i> 3 Comment</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="news-item">
-                                        <div class="ni-pic">
-                                            <img src="img/news/ln-2.jpg" alt="">
-                                        </div>
-                                        <div class="ni-text">
-                                            <h5><a href="#">Decorate For Less With Art Posters</a></h5>
-                                            <ul>
-                                                <li><i class="fa fa-calendar"></i> May 19, 2021</li>
-                                                <li><i class="fa fa-edit"></i> 3 Comment</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="news-item">
-                                        <div class="ni-pic">
-                                            <img src="img/news/ln-3.jpg" alt="">
-                                        </div>
-                                        <div class="ni-text">
-                                            <h5><a href="#">Home Business Advertising Ideas</a></h5>
-                                            <ul>
-                                                <li><i class="fa fa-calendar"></i> May 19, 2021</li>
-                                                <li><i class="fa fa-edit"></i> 3 Comment</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="news-item">
-                                        <div class="ni-pic">
-                                            <img src="img/news/ln-4.jpg" alt="">
-                                        </div>
-                                        <div class="ni-text">
-                                            <h5><a href="#">Lasik Doesn T Stop Your Eyes From Aging</a></h5>
-                                            <ul>
-                                                <li><i class="fa fa-calendar"></i> May 19, 2021</li>
-                                                <li><i class="fa fa-edit"></i> 3 Comment</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 p-0">
+                        <div class="soccer-item set-bg" data-setbg="img/soccer/soccer-2.jpg">
+                            <div class="si-tag">Soccer</div>
+                            <div class="si-text">
+                                <h5><a href="#">Hypnotherapy For Motivation Getting The Drive Back</a></h5>
+                                <ul>
+                                    <li><i class="fa fa-calendar"></i> May 19, 2021</li>
+                                    <li><i class="fa fa-edit"></i> 3 Comment</li>
+                                </ul>
                             </div>
-                        </div> --%>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 p-0">
+                        <div class="soccer-item set-bg" data-setbg="img/soccer/soccer-3.jpg">
+                            <div class="si-tag">Soccer</div>
+                            <div class="si-text">
+                                <h5><a href="#">Astronomy Binoculars A Great Alternative</a></h5>
+                                <ul>
+                                    <li><i class="fa fa-calendar"></i> May 19, 2021</li>
+                                    <li><i class="fa fa-edit"></i> 3 Comment</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 p-0">
+                        <div class="soccer-item set-bg" data-setbg="img/soccer/soccer-4.jpg">
+                            <div class="si-tag">Soccer</div>
+                            <div class="si-text">
+                                <h5><a href="#">Decorate For Less With Art Posters</a></h5>
+                                <ul>
+                                    <li><i class="fa fa-calendar"></i> May 19, 2021</li>
+                                    <li><i class="fa fa-edit"></i> 3 Comment</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Soccer Section End -->
+
+        <!-- Latest Section Begin -->
+        <section class="latest-section">
+            <div class="container">
+                <div class="row">
                     <div class="col-lg-4">
                         <div class="section-title">
                             <h3>Club <span>Ranking</span></h3>
@@ -407,20 +257,20 @@
                                             <th>Player</th>
                                             <th>Goal</th>
                                             <th>Club</th>
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <c:forEach begin="0" end="4" step="1" var ="i">
                                             <c:if test="${i<listTopScorer.size()}">
                                                 <c:set var="T" value="${listTopScorer.get(i)}"/>
-                                            <tr>
-                                                <td>${i+1}</td>
-                                                <td>${T.playerName}</td>
-                                                <td>${T.goalno}</td>                                        
-                                                <td>${T.clubName}</td>
-                                                
-                                            </tr>
+                                                <tr>
+                                                    <td>${i+1}</td>
+                                                    <td>${T.playerName}</td>
+                                                    <td>${T.goalno}</td>                                        
+                                                    <td>${T.clubName}</td>
+
+                                                </tr>
                                             </c:if>
                                         </c:forEach>
                                     </tbody>
@@ -448,14 +298,14 @@
                                     <tbody>
                                         <c:forEach begin="0" end="4" step="1" var ="i">
                                             <c:if test="${i<listAs.size()}">
-                                            <c:set var="Ag" value="${listAs.get(i)}"/>
-                                           
-                                            <tr>
-                                                <td>${i+1}</td>
-                                                <td>${pd.getPlayerbyId(Ag.id).playerName}</td>
-                                                <td>${Ag.countG}</td>
-                                                <td>1</td>
-                                            </tr>
+                                                <c:set var="Ag" value="${listAs.get(i)}"/>
+
+                                                <tr>
+                                                    <td>${i+1}</td>
+                                                    <td>${pd.getPlayerbyId(Ag.id).playerName}</td>
+                                                    <td>${Ag.countG}</td>
+                                                    <td>1</td>
+                                                </tr>
                                             </c:if>
                                         </c:forEach>
                                     </tbody>

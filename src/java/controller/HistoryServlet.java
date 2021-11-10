@@ -50,18 +50,14 @@ public class HistoryServlet extends HttpServlet {
             op = "";
         }
         switch (op) {
-          
-          
-            
             case "view": {
                 int id = Integer.parseInt(request.getParameter("id"));
-                List<Match> list = md.getAllMatchById(id);
+                List<Match> list = md.getListNextMatch(id, true);
                 request.setAttribute("list", list);
                 request.setAttribute("cd", cd);
                 request.getRequestDispatcher("schedule.jsp").forward(request, response);
                 break;
             }
-           
             default:
                 break;
         }

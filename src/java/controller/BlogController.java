@@ -99,9 +99,9 @@ public class BlogController extends HttpServlet {
                 String c = request.getParameter("content");
                 String i = request.getParameter("img");
                 int id = Integer.parseInt(request.getParameter("id"));
-
+               
                 bdao.updateBlog(t, c, i, id);
-                response.sendRedirect("blog?action=list");
+                response.sendRedirect("blog?action=detail");
 
                 break;
                 case "insertcomment":

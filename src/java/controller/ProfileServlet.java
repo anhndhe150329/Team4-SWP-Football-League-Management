@@ -5,8 +5,11 @@
  */
 package controller;
 
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,10 +37,19 @@ public class ProfileServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String op = request.getParameter("op");
         HttpSession session = request.getSession();
-        User a= (User)session.getAttribute("acc");
-        if("edit".equals(op)){
+        User a = (User) session.getAttribute("acc");
+        UserDAO ud = new UserDAO();
+        if ("edit".equals(op)) {
+            String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            Date dob = Date.valueOf(request.getParameter("dob")) ;
+            boolean gender = Boolean.valueOf(request.getParameter("gender"));
+            User u = new User(a.getUserId(), name, gender, dob, email);
+            ud.updateUser(u);
             
+            session.setAttribute("acc", ud.getById(u.getUserId()));
         }
+       
         request.getRequestDispatcher("profile.jsp").forward(request, response);
     }
 

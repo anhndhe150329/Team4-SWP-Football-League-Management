@@ -15,7 +15,7 @@
         <meta name="keywords" content="Specer, unica, creative, html">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Specer | Template</title>
+        <title>Blog</title>
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
@@ -110,7 +110,15 @@
                             <c:if test="${acc.type!=1}">
                                 <div class="comment-form">
                                    <h4>Leave A Comment</h4>
-                                    <form action="blog?action=insertcomment&id1=${blogpost_id}" method="Post">
+                                   <c:if test="${acc==null}" >
+                                       <div class="row">
+                                        <div class="col-lg-12">
+                                            <h5>Please <a href="login">Sign in</a> before comment</h5>
+                                        </div>
+                                    </div>
+                                   </c:if>
+                                   <c:if test="${acc!=null}">
+                                       <form action="blog?action=insertcomment&id1=${blogpost_id}" method="Post">
                                        <div class="row">
 
                                         <div class="col-lg-12">
@@ -121,11 +129,13 @@
                                         </div>
                                     </div>
                                     </form>
+                                   </c:if>
+                                    
                                 </div>
                             </c:if>
-                            <c:if test="${acc.type==1}">
-                                <div class="comment-form">
-                                    <h4>Update</h4>
+                            <%--<c:if test="${acc.type==1}">--%>
+<!--                                <div class="comment-form">
+                                    <h4>Update </h4>
                                     <form action="blog?action=update&id=${c.id_post}">
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -140,8 +150,8 @@
                                             </div>
                                         </div>
                                     </form>
-                                </div>
-                            </c:if>
+                                </div>-->
+                            <%--</c:if>--%>
                             </div>
                         </div>
                         <div class="col-lg-4">

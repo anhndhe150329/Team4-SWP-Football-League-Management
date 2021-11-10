@@ -13,6 +13,7 @@ import dal.SquadDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -96,9 +97,16 @@ public class ScheduleServlet extends HttpServlet {
                 break;
             }
             case "view": {
-                List<Match> list = md.getAllMatch();
+                String cid = request.getParameter("clubId"); 
+                List<Match> list = new ArrayList<Match>();
+                if (cid!= null) {
+                    list = md.getAllMatchById(Integer.parseInt(cid));
+                }else{
+                    list = md.getAllMatch();
+                }
                 request.setAttribute("list", list);
                 request.setAttribute("cd", cd);
+                
                 request.getRequestDispatcher("schedule.jsp").forward(request, response);
                 break;
             }

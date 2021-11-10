@@ -15,7 +15,7 @@
         <meta name="keywords" content="Specer, unica, creative, html">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Blog</title>
+        
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
@@ -47,7 +47,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="bs-text">
-                                <h2>Blog</h2>
+                                <h2>Favourite Blog</h2>
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                             <div class="blog-items">
-                            <c:forEach items="${requestScope.all}" var="c">
+                            <c:forEach items="${requestScope.list}" var="c">
                                 <div class="single-item">
 
                                     <div class="bi-pic">
@@ -90,20 +90,7 @@
                                         <ul>
 
                                             <li><i class="fa fa-calendar"></i> ${c.date}</li>
-                                                <c:if test="${acc.type!=null}">
-
-                                                <a href="like?action=likef&pid=${c.id_post}" style="text-decoration: none; margin-right: 10px">
-                                                    <span style="font-size:20px">&#128077;</span>
-                                                </a>
-
-                                                <a href="like?action=dislike&pid=${c.id_post}">
-                                                    <i class="fa fa-thumbs-down"></i>
-                                                </a>
-                                            </c:if>
-
-                                            <c:if test="${acc.type==1}">
-                                                <li  style="color:blue"> <a href="blog?action=delete&pid=${c.id_post}">Delete</a></li>
-                                                </c:if>
+                                                
                                             <li><i class="fa fa-edit"></i> 3 Comment</li>
                                         </ul>
                                         <p>${c.content}</p>
@@ -151,7 +138,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="bs-recent">
+<!--                            <div class="bs-recent">
                                 <div class="section-title sidebar-title">
                                     <h5>Recent Post</h5>
                                 </div>
@@ -170,7 +157,7 @@
                                     </div>
                                 </c:forEach>
 
-                            </div>
+                            </div>-->
                             <div class="bs-popular-tag">
                                 <div class="section-title sidebar-title">
                                     <h5>Popular Tag</h5>

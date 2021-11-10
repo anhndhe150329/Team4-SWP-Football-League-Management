@@ -12,7 +12,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
-        <title>Bootstrap Sign up Form Horizontal</title>
+        <title>Change Password</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -110,27 +110,27 @@
 
                 </div>			
                 <div class="form-group row">
-                    <label class="col-form-label col-4">UserId</label>
+                    
                     <div class="col-8">
-                        <input type="number" class="form-control" name="userId" value="${sessionScope.acc.userId}" style="border-color: black ">
+                        <input type="number" class="form-control" name="userId" value="${sessionScope.acc.userId}" style="border-color: black " hidden>
                     </div>        	
                 </div>
                     <div class="form-group row">
                     <label class="col-form-label col-4">Old Password</label>
                     <div class="col-8">
-                        <input type="number" class="form-control" name="userId" value="${sessionScope.acc.password}" style="border-color: black">
+                        <input type="password" class="form-control" name="oldpass"  style="border-color: black">
                     </div>        	
                 </div>
                 <div class="form-group row">
                     <label class="col-form-label col-4">New Password</label>
                     <div class="col-8">
-                        <input type="text" class="form-control" name="pass" required="required" style="border-color: black">
+                        <input type="password" class="form-control" name="pass" required="required" style="border-color: black">
                     </div>        	
                 </div>
                 <div class="form-group row">
                     <label class="col-form-label col-4">Confirm password</label>
                     <div class="col-8">
-                        <input type="text" class="form-control" name="pass1" required="required" style="border-color: black">
+                        <input type="password" class="form-control" name="pass1" required="required" style="border-color: black">
                     </div>        	
                 </div>
 
