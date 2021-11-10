@@ -183,7 +183,9 @@
                                         <li class="${active=="blog"?"active":""}"><a href="#">Pages</a>
                                             <ul class="dropdown">
                                                 <li><a href="blog?action=list">Blog</a></li>
-
+                                                <c:if test="${acc!=null}">
+                                                <li><a href="like?action=listFav">List Favourite Blog</a></li>
+                                                </c:if>
                                             </ul>
                                         </li>
                                     </c:if>

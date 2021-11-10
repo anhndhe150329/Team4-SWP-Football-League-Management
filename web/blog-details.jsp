@@ -133,9 +133,9 @@
                                     
                                 </div>
                             </c:if>
-                            <c:if test="${acc.type==1}">
-                                <div class="comment-form">
-                                    <h4>Update</h4>
+                            <%--<c:if test="${acc.type==1}">--%>
+<!--                                <div class="comment-form">
+                                    <h4>Update </h4>
                                     <form action="blog?action=update&id=${c.id_post}">
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -150,8 +150,8 @@
                                             </div>
                                         </div>
                                     </form>
-                                </div>
-                            </c:if>
+                                </div>-->
+                            <%--</c:if>--%>
                             </div>
                         </div>
                         <div class="col-lg-4">
