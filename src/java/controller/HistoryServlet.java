@@ -52,7 +52,7 @@ public class HistoryServlet extends HttpServlet {
         switch (op) {
             case "view": {
                 int id = Integer.parseInt(request.getParameter("id"));
-                List<Match> list = md.getListNextMatch(id, true);
+                List<Match> list = md.getAllMatchById(id);
                 request.setAttribute("list", list);
                 request.setAttribute("cd", cd);
                 request.getRequestDispatcher("schedule.jsp").forward(request, response);

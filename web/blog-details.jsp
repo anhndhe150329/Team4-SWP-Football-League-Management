@@ -101,8 +101,7 @@
                                         <span>${com.date}</span>
                                         <h5>${com.username}</h5>
                                         <p>${com.content}</p>
-                                        <a href="#" class="comment-btn like-btn">Like</a>
-                                        <a href="#" class="comment-btn">Reply</a>
+                                      
                                     </div>
                                 </div>
                                 </c:forEach>

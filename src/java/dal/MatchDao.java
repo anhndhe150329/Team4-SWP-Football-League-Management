@@ -24,7 +24,7 @@ public class MatchDao extends DBContext {
 
     public List<Match> getAllMatchById(int id) {
         List<Match> list = new ArrayList();
-        String sql = "select * from match where home =? or away =? order by [date]";
+        String sql = "select * from match where ( home =? or away =?) and status = 'true' order by [date]";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);

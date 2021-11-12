@@ -195,7 +195,6 @@ public class BlogController extends HttpServlet {
                 int id_post = Integer.parseInt(request.getParameter("id1"));
                 CommentDAO cdao = new CommentDAO();
                 cdao.insertComment(content1, userId,id_post);
-//                 request.getRequestDispatcher("blog-details.jsp").forward(request, response);
                   response.sendRedirect("blog?action=detail&pid="+id_post);
 //                PrintWriter out = response.getWriter();
 //                out.print(content1);
